@@ -30,6 +30,7 @@ public:
     ~team();
 
     player* get_player_position(unsigned char pos);
+    void set_player_position(player* p, unsigned char pos);
 
     unsigned int add_player(player* p);
     unsigned int add_player(player* p, unsigned char pos);

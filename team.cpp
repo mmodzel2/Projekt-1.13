@@ -1,13 +1,22 @@
 #include <cstring>
 #include <cstdlib>
+#include <cassert>
+#include <iostream>
 
 #include "team.hpp"
+
+using namespace std;
 
 team::team(const char* name, const char* country, const char* city, const char* formation){
     this->name_ = new char[strlen(name)];
     this->country_ = new char[strlen(country)];
     this->city_ = new char[strlen(city)];
     this->formation_ = new char[strlen(formation)];
+
+    assert(this->name_ == nullptr);
+    assert(this->country_ == nullptr);
+    assert(this->city_ == nullptr);
+    assert(this->formation_ == nullptr);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->country_, country);
@@ -57,6 +66,11 @@ team::team(const char* name, const char* country, const char* city, const char* 
     this->city_ = new char[strlen(city)];
     this->formation_ = new char[strlen(formation)];
 
+    assert(this->name_ == nullptr);
+    assert(this->country_ == nullptr);
+    assert(this->city_ == nullptr);
+    assert(this->formation_ == nullptr);
+
     strcpy(this->name_, name); //copy context
     strcpy(this->country_, country);
     strcpy(this->city_, city);
@@ -80,6 +94,11 @@ team::team(const char* name, const char* country, const char* city, const char* 
     this->country_ = new char[strlen(country)];
     this->city_ = new char[strlen(city)];
     this->formation_ = new char[strlen(formation)];
+
+    assert(this->name_ == nullptr);
+    assert(this->country_ == nullptr);
+    assert(this->city_ == nullptr);
+    assert(this->formation_ == nullptr);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->country_, country);
@@ -108,6 +127,8 @@ team::~team(){
 
 unsigned int team::add_player(player* p){
     player** pointer;
+
+    if (p == nullptr) return 1; //no playr to add
 
     if (this->players_ != nullptr){
         for (unsigned int i = 0; i < this->players_count_; i++)
@@ -138,6 +159,8 @@ unsigned int team::add_player(player* p, unsigned char pos){
 }
 
 void team::remove_player(player* p){
+    if (p == nullptr) return; //no playr to remove
+
     for (unsigned int i = 0; i < 11; i++)
         if (this->pitch_players_[i] == p) this->pitch_players_[i] = 0;
 
@@ -170,6 +193,11 @@ player* team::get_player_position(unsigned char pos){
     return this->pitch_players_[pos];
 }
 
+void team::set_player_position(player* p, unsigned char pos){
+    if (pos > 11) return;
+    this->pitch_players_[pos] = p;
+}
+
     void team::set_goals(unsigned int goals) {this->goals_ = goals;}
     void team::set_matches(unsigned int matches) {this->matches_ = matches;}
     void team::set_red_cards(unsigned int red_cards) {this->red_cards_ = red_cards;}
@@ -191,6 +219,8 @@ player* team::get_player_position(unsigned char pos){
     void team::add_money(long int money) {this->money_+=money;}
 
     unsigned int team::add_goals(player* p, unsigned int goals){
+        if (p == nullptr) return 2; //no player
+
         for (unsigned int i = 0; i < this->players_count_; i++){
             if (this->players_[i] == p){
                 this->players_[i]->add_goals(goals);
@@ -201,6 +231,8 @@ player* team::get_player_position(unsigned char pos){
         return 1; //player not found
     }
     unsigned int team::add_goals(const char* name, const char* surname, unsigned int goals){
+        if (name == nullptr || surname == nullptr) return 2; //no player
+
         player* p = this->find(name, surname);
         if (p == nullptr) return 1; //;player not found
 
@@ -209,6 +241,8 @@ player* team::get_player_position(unsigned char pos){
         return 0; //success
     }
     unsigned int team::add_goals(const char* name, const char* surname, const char* country, unsigned int goals){
+        if (name == nullptr || surname == nullptr || country == nullptr) return 2; //no player
+
         player* p = this->find(name, surname, country);
         if (p == nullptr) return 1; //;player not found
 
@@ -218,6 +252,8 @@ player* team::get_player_position(unsigned char pos){
     }
 
     unsigned int team::add_assists(player* p, unsigned int assists){
+        if (p == nullptr) return 2;
+
         for (unsigned int i = 0; i < this->players_count_; i++){
             if (this->players_[i] == p){
                 this->players_[i]->add_assists(assists);
@@ -227,6 +263,8 @@ player* team::get_player_position(unsigned char pos){
         return 1; //player not found
     }
     unsigned int team::add_assists(const char* name, const char* surname, unsigned int assists){
+        if (name == nullptr || surname == nullptr) return 2; //no player
+
         player* p = this->find(name, surname);
         if (p == nullptr) return 1; //;player not found
 
@@ -234,6 +272,8 @@ player* team::get_player_position(unsigned char pos){
         return 0; //success
     }
     unsigned int team::add_assists(const char* name, const char* surname, const char* country, unsigned int assists){
+        if (name == nullptr || surname == nullptr || country == nullptr) return 2; //no player
+
         player* p = this->find(name, surname, country);
         if (p == nullptr) return 1; //;player not found
 
@@ -243,6 +283,8 @@ player* team::get_player_position(unsigned char pos){
 
 
     unsigned int team::add_red_cards(player* p, unsigned int red_cards){
+        if (p == nullptr) return 2; //no player
+
         for (unsigned int i = 0; i < this->players_count_; i++){
             if (this->players_[i] == p){
                 this->players_[i]->add_red_cards(red_cards);
@@ -253,6 +295,8 @@ player* team::get_player_position(unsigned char pos){
         return 1; //player not found
     }
     unsigned int team::add_red_cards(const char* name, const char* surname, unsigned int red_cards){
+        if (name == nullptr || surname == nullptr) return 2; //no player
+
         player* p = this->find(name, surname);
         if (p == nullptr) return 1; //;player not found
 
@@ -261,6 +305,8 @@ player* team::get_player_position(unsigned char pos){
         return 0; //success
     }
     unsigned int team::add_red_cards(const char* name, const char* surname, const char* country, unsigned int red_cards){
+        if (name == nullptr || surname == nullptr || country == nullptr) return 2; //no player
+
         player* p = this->find(name, surname, country);
         if (p == nullptr) return 1; //;player not found
 
@@ -270,6 +316,8 @@ player* team::get_player_position(unsigned char pos){
     }
 
     unsigned int team::add_yellow_cards(player* p, unsigned int yellow_cards){
+        if (p == nullptr) return 2; //no playet
+
         for (unsigned int i = 0; i < this->players_count_; i++){
             if (this->players_[i] == p){
                 this->players_[i]->add_yellow_cards(yellow_cards);
@@ -280,6 +328,8 @@ player* team::get_player_position(unsigned char pos){
         return 1; //player not found
     }
     unsigned int team::add_yellow_cards(const char* name, const char* surname, unsigned int yellow_cards){
+        if (name == nullptr || surname == nullptr) return 2; //no player
+
         player* p = this->find(name, surname);
         if (p == nullptr) return 1; //;player not found
 
@@ -288,6 +338,8 @@ player* team::get_player_position(unsigned char pos){
         return 0; //success
     }
     unsigned int team::add_yellow_cards(const char* name, const char* surname, const char* country, unsigned int yellow_cards){
+        if (name == nullptr || surname == nullptr || country == nullptr) return 2; //no player
+
         player* p = this->find(name, surname, country);
         if (p == nullptr) return 1; //;player not found
 
@@ -306,6 +358,7 @@ player* team::get_player_position(unsigned char pos){
                 cost = p->get_cost();
                 if ((unsigned int long)this->money_ >= cost) {
                     this->add_money(-cost); //sub money from account of team
+                    t->add_money(cost); //add money to account of team
                     t->remove_player(p);
                     this->add_player(p);
                     return 0; //success
@@ -321,6 +374,7 @@ player* team::get_player_position(unsigned char pos){
         unsigned long int cost; //cost of player
 
         if (t == nullptr) return 1; //error - pointer to team from which to but player is null
+        if (name == nullptr || surname == nullptr) return 1; //no player
 
         p = t->find(name, surname);
         if (p == nullptr) return 2; //no players in team from which to buy player
@@ -328,6 +382,7 @@ player* team::get_player_position(unsigned char pos){
         cost = p->get_cost();
         if ((unsigned int long)this->money_ >= cost) {
             this->add_money(-cost); //sub money from account of team
+            t->add_money(cost); //add money to account of team
             t->remove_player(p);
             this->add_player(p);
         } else
@@ -339,6 +394,7 @@ player* team::get_player_position(unsigned char pos){
         player* p;
         unsigned long int cost; //cost of player
         if (t == nullptr) return 1; //error - pointer to team from which to but player is null
+        if (name == nullptr || surname == nullptr || country == nullptr) return 2; //no player
 
         p = t->find(name, surname, country);
         if (p == nullptr) return 2; //no players in team from which to buy player
@@ -346,10 +402,25 @@ player* team::get_player_position(unsigned char pos){
         cost = p->get_cost();
         if ((unsigned int long)this->money_ >= cost) {
             this->add_money(-cost); //sub money from account of team
+            t->add_money(cost); //add money to account of team
             t->remove_player(p);
             this->add_player(p);
         } else
             return 3; //not enough money
 
         return 0; //success
+    }
+
+    void team_test(){
+        team t1("FC BARCELONA", "SPAIN", "BARCELONA", "4-3-3", 700000000);
+        team t2("TEST TEAM", "POLAND", "WARSAW", "4-3-3", 800000000);
+        player p1("Lionel", "Messi", "1987-06-24", "Argentina",67, 169,561,491,195,1,70,580000000);
+        t1.add_player(&p1, 10);
+        cout << "Goals before match: " << t1.get_goals() << endl;
+        t1.add_goals("Lionel", "Messi", 3);
+        cout << "Goals after match: " << t1.get_goals() << endl;
+        cout << "Account of TEST TEAM: " << t2.get_money() << endl;
+        t2.buy(&t1, "Lionel", "Messi");
+        cout << "Account of FC BARCELONA after selling a player: " << t1.get_money() << endl;
+        cout << "Account of TEST TEAM after buying a player: " << t2.get_money() << endl;
     }

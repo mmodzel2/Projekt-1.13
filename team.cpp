@@ -3,7 +3,7 @@
 
 #include "team.hpp"
 
-team::team(char* name, char* country, char* city, char* formation){
+team::team(const char* name, const char* country, const char* city, const char* formation){
     this->name_ = new char[strlen(name)];
     this->country_ = new char[strlen(country)];
     this->city_ = new char[strlen(city)];
@@ -27,7 +27,7 @@ team::team(char* name, char* country, char* city, char* formation){
     this->money_ = 0;
 }
 
-team::team(char* name, char* country, char* city, char* formation, unsigned int money){
+team::team(const char* name, const char* country, const char* city, const char* formation, unsigned int money){
     this->name_ = new char[strlen(name)];
     this->country_ = new char[strlen(country)];
     this->city_ = new char[strlen(city)];
@@ -51,7 +51,7 @@ team::team(char* name, char* country, char* city, char* formation, unsigned int 
     this->money_ = money;
 }
 
-team::team(char* name, char* country, char* city, char* formation, unsigned int goals, unsigned int matches, unsigned int red_cards, unsigned int yellow_cards){
+team::team(const char* name, const char* country, const char* city, const char* formation, unsigned int goals, unsigned int matches, unsigned int red_cards, unsigned int yellow_cards){
     this->name_ = new char[strlen(name)];
     this->country_ = new char[strlen(country)];
     this->city_ = new char[strlen(city)];
@@ -75,7 +75,7 @@ team::team(char* name, char* country, char* city, char* formation, unsigned int 
     this->money_ = 0;
 }
 
-team::team(char* name, char* country, char* city, char* formation, unsigned int goals, unsigned int matches, unsigned int red_cards, unsigned int yellow_cards, unsigned int money){
+team::team(const char* name, const char* country, const char* city, const char* formation, unsigned int goals, unsigned int matches, unsigned int red_cards, unsigned int yellow_cards, unsigned int money){
     this->name_ = new char[strlen(name)];
     this->country_ = new char[strlen(country)];
     this->city_ = new char[strlen(city)];
@@ -151,18 +151,23 @@ void team::remove_player(player* p){
         }
 }
 
-player* team::find(char* name, char* surname){
+player* team::find(const char* name, const char* surname){
     for (unsigned int i = 0; i < this->players_count_; i++)
         if ((strcmp(this->players_[i]->get_name(), name) == 0) || (strcmp(this->players_[i]->get_surname(), surname) == 0)) return this->players_[i];
 
     return nullptr;
 }
 
-player* team::find(char* name, char* surname, char* country){
+player* team::find(const char* name, const char* surname, const char* country){
    for (unsigned int i = 0; i < this->players_count_; i++)
         if ((strcmp(this->players_[i]->get_name(), name) == 0) || (strcmp(this->players_[i]->get_surname(), surname) == 0) || (strcmp(this->players_[i]->get_country(), country) == 0)) return this->players_[i];
 
     return nullptr;
+}
+
+player* team::get_player_position(unsigned char pos){
+    if (pos > 11) return nullptr;
+    return this->pitch_players_[pos];
 }
 
     void team::set_goals(unsigned int goals) {this->goals_ = goals;}
@@ -174,12 +179,16 @@ player* team::find(char* name, char* surname, char* country){
     char* team::get_name() const {return this->name_;}
     char* team::get_country() const {return this->country_;}
     char* team::get_city() const {return this->city_;}
+    char* team::get_formation() const {return this->formation_;}
 
     unsigned int team::get_goals() const {return this->goals_;}
     unsigned int team::get_matches() const {return this->matches_;}
     unsigned int team::get_red_cards() const {return this->red_cards_;}
     unsigned int team::get_yellow_cards() const {return this->yellow_cards_;}
-    unsigned long int team::get_money() const {return this->money_;}
+    long int team::get_money() const {return this->money_;}
+
+    void team::add_matches(unsigned int matches) {this->matches_+=matches;}
+    void team::add_money(long int money) {this->money_+=money;}
 
     unsigned int team::add_goals(player* p, unsigned int goals){
         for (unsigned int i = 0; i < this->players_count_; i++){
@@ -191,7 +200,7 @@ player* team::find(char* name, char* surname, char* country){
         }
         return 1; //player not found
     }
-    unsigned int team::add_goals(char* name, char* surname, unsigned int goals){
+    unsigned int team::add_goals(const char* name, const char* surname, unsigned int goals){
         player* p = this->find(name, surname);
         if (p == nullptr) return 1; //;player not found
 
@@ -199,7 +208,7 @@ player* team::find(char* name, char* surname, char* country){
         this->goals_ += goals;
         return 0; //success
     }
-    unsigned int team::add_goals(char* name, char* surname, char* country, unsigned int goals){
+    unsigned int team::add_goals(const char* name, const char* surname, const char* country, unsigned int goals){
         player* p = this->find(name, surname, country);
         if (p == nullptr) return 1; //;player not found
 
@@ -207,6 +216,31 @@ player* team::find(char* name, char* surname, char* country){
         this->goals_ += goals;
         return 0; //success
     }
+
+    unsigned int team::add_assists(player* p, unsigned int assists){
+        for (unsigned int i = 0; i < this->players_count_; i++){
+            if (this->players_[i] == p){
+                this->players_[i]->add_assists(assists);
+                return 0; //success
+            }
+        }
+        return 1; //player not found
+    }
+    unsigned int team::add_assists(const char* name, const char* surname, unsigned int assists){
+        player* p = this->find(name, surname);
+        if (p == nullptr) return 1; //;player not found
+
+        p->add_assists(assists);
+        return 0; //success
+    }
+    unsigned int team::add_assists(const char* name, const char* surname, const char* country, unsigned int assists){
+        player* p = this->find(name, surname, country);
+        if (p == nullptr) return 1; //;player not found
+
+        p->add_assists(assists);
+        return 0; //success
+    }
+
 
     unsigned int team::add_red_cards(player* p, unsigned int red_cards){
         for (unsigned int i = 0; i < this->players_count_; i++){
@@ -218,7 +252,7 @@ player* team::find(char* name, char* surname, char* country){
         }
         return 1; //player not found
     }
-    unsigned int team::add_red_cards(char* name, char* surname, unsigned int red_cards){
+    unsigned int team::add_red_cards(const char* name, const char* surname, unsigned int red_cards){
         player* p = this->find(name, surname);
         if (p == nullptr) return 1; //;player not found
 
@@ -226,7 +260,7 @@ player* team::find(char* name, char* surname, char* country){
         this->red_cards_ += red_cards;
         return 0; //success
     }
-    unsigned int team::add_red_cards(char* name, char* surname, char* country, unsigned int red_cards){
+    unsigned int team::add_red_cards(const char* name, const char* surname, const char* country, unsigned int red_cards){
         player* p = this->find(name, surname, country);
         if (p == nullptr) return 1; //;player not found
 
@@ -236,7 +270,7 @@ player* team::find(char* name, char* surname, char* country){
     }
 
     unsigned int team::add_yellow_cards(player* p, unsigned int yellow_cards){
-        for (int i = 0; i < this->players_count_; i++){
+        for (unsigned int i = 0; i < this->players_count_; i++){
             if (this->players_[i] == p){
                 this->players_[i]->add_yellow_cards(yellow_cards);
                 this->yellow_cards_ += yellow_cards;
@@ -245,7 +279,7 @@ player* team::find(char* name, char* surname, char* country){
         }
         return 1; //player not found
     }
-    unsigned int team::add_yellow_cards(char* name, char* surname, unsigned int yellow_cards){
+    unsigned int team::add_yellow_cards(const char* name, const char* surname, unsigned int yellow_cards){
         player* p = this->find(name, surname);
         if (p == nullptr) return 1; //;player not found
 
@@ -253,11 +287,69 @@ player* team::find(char* name, char* surname, char* country){
         this->yellow_cards_ += yellow_cards;
         return 0; //success
     }
-    unsigned int team::add_yellow_cards(char* name, char* surname, char* country, unsigned int yellow_cards){
+    unsigned int team::add_yellow_cards(const char* name, const char* surname, const char* country, unsigned int yellow_cards){
         player* p = this->find(name, surname, country);
         if (p == nullptr) return 1; //;player not found
 
         p->add_yellow_cards(yellow_cards);
         this->yellow_cards_ += yellow_cards;
+        return 0; //success
+    }
+
+    unsigned int team::buy(team* t, player* p){
+        unsigned long int cost; //cost of player
+        if (t == nullptr) return 1; //error - pointer to team from which to but player is null
+        if (p == nullptr) return 1; //error - no player
+
+        for (unsigned int i = 0; i < t->players_count_; i++){
+            if(t->players_[i] == p){
+                cost = p->get_cost();
+                if ((unsigned int long)this->money_ >= cost) {
+                    this->add_money(-cost); //sub money from account of team
+                    t->remove_player(p);
+                    this->add_player(p);
+                    return 0; //success
+                } else
+                    return 3; //not enough money
+            }
+        }
+
+        return 2; //no players in team from which to buy player
+    }
+    unsigned int team::buy(team* t, const char* name, const char* surname){
+        player* p;
+        unsigned long int cost; //cost of player
+
+        if (t == nullptr) return 1; //error - pointer to team from which to but player is null
+
+        p = t->find(name, surname);
+        if (p == nullptr) return 2; //no players in team from which to buy player
+
+        cost = p->get_cost();
+        if ((unsigned int long)this->money_ >= cost) {
+            this->add_money(-cost); //sub money from account of team
+            t->remove_player(p);
+            this->add_player(p);
+        } else
+            return 3; //not enough money
+
+        return 0; //success
+    }
+    unsigned int team::buy(team* t, const char* name, const char* surname, const char* country){
+        player* p;
+        unsigned long int cost; //cost of player
+        if (t == nullptr) return 1; //error - pointer to team from which to but player is null
+
+        p = t->find(name, surname, country);
+        if (p == nullptr) return 2; //no players in team from which to buy player
+
+        cost = p->get_cost();
+        if ((unsigned int long)this->money_ >= cost) {
+            this->add_money(-cost); //sub money from account of team
+            t->remove_player(p);
+            this->add_player(p);
+        } else
+            return 3; //not enough money
+
         return 0; //success
     }

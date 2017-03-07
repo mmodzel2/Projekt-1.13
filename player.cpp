@@ -286,8 +286,3 @@ player::~player(){
     void player::add_matches(unsigned int matches_to_add) {this->matches_+=matches_to_add;}
     void player::add_red_cards(unsigned int red_cards_to_add) {this->red_cards_+=red_cards_to_add;}
     void player::add_yellow_cards(unsigned int yellow_cards_to_add) {this->yellow_cards_+=yellow_cards_to_add;}
-    void player::add_goals() {this->goals_++;} //Increment functions
-    void player::add_assists() {this->assists_++;}
-    void player::add_matches() {this->matches_++;}
-    void player::add_red_cards() {this->red_cards_++;}
-    void player::add_yellow_cards() {this->yellow_cards_++;}

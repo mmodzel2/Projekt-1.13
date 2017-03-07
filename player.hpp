@@ -5,12 +5,12 @@ class player {
 private:
     char* name_;
     char* surname_;
+    char* country_;
     unsigned char day_of_birth_; //player birth date
     unsigned char month_of_birth_;
     unsigned short year_of_birth_;
 
     unsigned long int cost_; //cost of the player
-    char* country_;
 
     unsigned char wage_;
     unsigned char growth_;
@@ -55,16 +55,11 @@ public:
     unsigned int get_red_cards() const;
     unsigned int get_yellow_cards() const;
 
-    void add_goals(unsigned int goals_to_add);
-    void add_assists(unsigned int assists_to_add);
-    void add_matches(unsigned int matches_to_add);
-    void add_red_cards(unsigned int red_cards_to_add);
-    void add_yellow_cards(unsigned int yellow_cards_to_add);
-    void add_goals(); //Increment functions
-    void add_assists();
-    void add_matches();
-    void add_red_cards();
-    void add_yellow_cards();
+    void add_goals(unsigned int goals_to_add=1);
+    void add_assists(unsigned int assists_to_add=1);
+    void add_matches(unsigned int matches_to_add=1);
+    void add_red_cards(unsigned int red_cards_to_add=1);
+    void add_yellow_cards(unsigned int yellow_cards_to_add=1);
 };
 
 #endif

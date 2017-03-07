@@ -21,12 +21,12 @@ private:
     unsigned int red_cards_; //red_cards count
     unsigned int yellow_cards_; //yellow_cards count
 
-    unsigned int money_;
+    long int money_;
 public:
-    team(char* name, char* country, char* city, char* formation);
-    team(char* name, char* country, char* city, char* formation, unsigned int money);
-    team(char* name, char* country, char* city, char* formation, unsigned int goals, unsigned int matches, unsigned int red_cards, unsigned int yellow_cards);
-    team(char* name, char* country, char* city, char* formation, unsigned int goals, unsigned int matches, unsigned int red_cards, unsigned int yellow_cards, unsigned int money);
+    team(const char* name, const char* country, const char* city, const char* formation);
+    team(const char* name, const char* country, const char* city, const char* formation, const unsigned int money);
+    team(const char* name, const char* country, const char* city, const char* formation, unsigned int goals, unsigned int matches, unsigned int red_cards, unsigned int yellow_cards);
+    team(const char* name, const char* country, const char* city, const char* formation, unsigned int goals, unsigned int matches, unsigned int red_cards, unsigned int yellow_cards, unsigned int money);
     ~team();
 
     player* get_player_position(unsigned char pos);
@@ -35,8 +35,8 @@ public:
     unsigned int add_player(player* p, unsigned char pos);
     void remove_player(player* p);
 
-    player* find(char* name, char* surname);
-    player* find(char* name, char* surname, char* country);
+    player* find(const char* name, const char* surname);
+    player* find(const char* name, const char* surname, const char* country);
 
     void set_goals(unsigned int goals);
     void set_matches(unsigned int matches);
@@ -47,24 +47,36 @@ public:
     char* get_name() const;
     char* get_country() const;
     char* get_city() const;
+    char* get_formation() const;
 
     unsigned int get_goals() const;
     unsigned int get_matches() const;
     unsigned int get_red_cards() const;
     unsigned int get_yellow_cards() const;
-    unsigned long int get_money() const;
+    long int get_money() const;
+
+    void add_matches(unsigned int matches);
+    void add_money(long int money);
 
     unsigned int add_goals(player* p, unsigned int goals);
-    unsigned int add_goals(char* name, char* surname, unsigned int goals);
-    unsigned int add_goals(char* name, char* surname, char* country, unsigned int goals);
+    unsigned int add_goals(const char* name, const char* surname, unsigned int goals);
+    unsigned int add_goals(const char* name, const char* surname, const char* country, unsigned int goals);
+
+    unsigned int add_assists(player* p, unsigned int assists);
+    unsigned int add_assists(const char* name, const char* surname, unsigned int assists);
+    unsigned int add_assists(const char* name, const char* surname, const char* country, unsigned int assists);
 
     unsigned int add_red_cards(player* p, unsigned int red_cards);
-    unsigned int add_red_cards(char* name, char* surname, unsigned int red_cards);
-    unsigned int add_red_cards(char* name, char* surname, char* country, unsigned int red_cards);
+    unsigned int add_red_cards(const char* name, const char* surname, unsigned int red_cards);
+    unsigned int add_red_cards(const char* name, const char* surname, const char* country, unsigned int red_cards);
 
     unsigned int add_yellow_cards(player* p, unsigned int yellow_cards);
-    unsigned int add_yellow_cards(char* name, char* surname, unsigned int yellow_cards);
-    unsigned int add_yellow_cards(char* name, char* surname, char* country, unsigned int yellow_cards);
+    unsigned int add_yellow_cards(const char* name, const char* surname, unsigned int yellow_cards);
+    unsigned int add_yellow_cards(const char* name, const char* surname, const char* country, unsigned int yellow_cards);
+
+    unsigned int buy(team* t, player* p);
+    unsigned int buy(team* t, const char* name, const char* surname);
+    unsigned int buy(team* t, const char* name, const char* surname, const char* country);
 };
 
 #endif // _TEAM_HPP

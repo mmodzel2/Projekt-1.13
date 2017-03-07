@@ -53,6 +53,18 @@ public:
     unsigned int get_red_cards() const;
     unsigned int get_yellow_cards() const;
     unsigned long int get_money() const;
+
+    unsigned int add_goals(player* p, unsigned int goals);
+    unsigned int add_goals(char* name, char* surname, unsigned int goals);
+    unsigned int add_goals(char* name, char* surname, char* country, unsigned int goals);
+
+    unsigned int add_red_cards(player* p, unsigned int red_cards);
+    unsigned int add_red_cards(char* name, char* surname, unsigned int red_cards);
+    unsigned int add_red_cards(char* name, char* surname, char* country, unsigned int red_cards);
+
+    unsigned int add_yellow_cards(player* p, unsigned int yellow_cards);
+    unsigned int add_yellow_cards(char* name, char* surname, unsigned int yellow_cards);
+    unsigned int add_yellow_cards(char* name, char* surname, char* country, unsigned int yellow_cards);
 };
 
 #endif // _TEAM_HPP

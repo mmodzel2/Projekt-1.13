@@ -37,6 +37,22 @@ public:
 
     player* find(char* name, char* surname);
     player* find(char* name, char* surname, char* country);
+
+    void set_goals(unsigned int goals);
+    void set_matches(unsigned int matches);
+    void set_red_cards(unsigned int red_cards);
+    void set_yellow_cards(unsigned int yellow_cards);
+    void set_money(unsigned long int money);
+
+    char* get_name() const;
+    char* get_country() const;
+    char* get_city() const;
+
+    unsigned int get_goals() const;
+    unsigned int get_matches() const;
+    unsigned int get_red_cards() const;
+    unsigned int get_yellow_cards() const;
+    unsigned long int get_money() const;
 };
 
 #endif // _TEAM_HPP

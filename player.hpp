@@ -41,6 +41,7 @@ public:
 
     char* get_name() const;
     char* get_surname() const;
+    char* get_country() const;
 
     unsigned char get_day_of_birth() const; //get player birth date
     unsigned char get_month_of_birth() const;

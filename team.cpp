@@ -138,7 +138,17 @@ unsigned int team::add_player(player* p, unsigned char pos){
 }
 
 void team::remove_player(player* p){
+    for (unsigned int i = 0; i < 11; i++)
+        if (this->pitch_players_[i] == p) this->pitch_players_[i] = 0;
 
+    for (unsigned int i = 0; i < this->players_count_; i++)
+        if (this->players_[i] == p) {
+            players_count_--;
+            for (; i < this->players_count_; i++)
+                this->players_[i] = this->players_[i+1];
+            this->players_[i] = 0;
+            break;
+        }
 }
 
 player* team::find(char* name, char* surname){
@@ -149,8 +159,24 @@ player* team::find(char* name, char* surname){
 }
 
 player* team::find(char* name, char* surname, char* country){
-    for (unsigned int i = 0; i < this->players_count_; i++)
+   for (unsigned int i = 0; i < this->players_count_; i++)
         if ((strcmp(this->players_[i]->get_name(), name) == 0) || (strcmp(this->players_[i]->get_surname(), surname) == 0) || (strcmp(this->players_[i]->get_country(), country) == 0)) return this->players_[i];
 
     return nullptr;
 }
+
+    void team::set_goals(unsigned int goals) {this->goals_ = goals;}
+    void team::set_matches(unsigned int matches) {this->matches_ = matches;}
+    void team::set_red_cards(unsigned int red_cards) {this->red_cards_ = red_cards;}
+    void team::set_yellow_cards(unsigned int yellow_cards) {this->yellow_cards_ = yellow_cards;}
+    void team::set_money(unsigned long int money) {this->money_ = money;}
+
+    char* team::get_name() const {return this->name_;}
+    char* team::get_country() const {return this->country_;}
+    char* team::get_city() const {return this->city_;}
+
+    unsigned int team::get_goals() const {return this->goals_;}
+    unsigned int team::get_matches() const {return this->matches_;}
+    unsigned int team::get_red_cards() const {return this->red_cards_;}
+    unsigned int team::get_yellow_cards() const {return this->yellow_cards_;}
+    unsigned long int team::get_money() const {return this->money_;}

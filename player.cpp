@@ -267,6 +267,7 @@ player::~player(){
 
     char* player::get_name() const {return this->name_;}
     char* player::get_surname() const {return this->surname_;}
+    char* player::get_country() const {return this->country_;}
 
     unsigned char player::get_day_of_birth() const {return this->day_of_birth_;} //get player birth date
     unsigned char player::get_month_of_birth() const {return this->month_of_birth_;}

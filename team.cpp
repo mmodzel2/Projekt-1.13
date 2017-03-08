@@ -34,6 +34,39 @@ team::team(const char* name, const char* country, const char* city, const char* 
     this->yellow_cards_ = 0; //yellow_cards count
 
     this->money_ = 0;
+
+    this->trainer_ = nullptr;
+}
+
+team::team(const char* name, const char* country, const char* city, const char* formation, trainer* trainer){
+    this->name_ = new char[strlen(name)];
+    this->country_ = new char[strlen(country)];
+    this->city_ = new char[strlen(city)];
+    this->formation_ = new char[strlen(formation)];
+
+    assert(this->name_ == nullptr);
+    assert(this->country_ == nullptr);
+    assert(this->city_ == nullptr);
+    assert(this->formation_ == nullptr);
+
+    strcpy(this->name_, name); //copy context
+    strcpy(this->country_, country);
+    strcpy(this->city_, city);
+    strcpy(this->formation_, formation);
+
+    for (int i = 0; i < 11; i++) pitch_players_[i] = 0;
+
+    this->players_ = nullptr;
+    this->players_count_ = 0;
+
+    this->goals_ = 0; //goals count
+    this->matches_ = 0; //matches_count
+    this->red_cards_ = 0; //red_cards count
+    this->yellow_cards_ = 0; //yellow_cards count
+
+    this->money_ = 0;
+
+    this->trainer_ = trainer;
 }
 
 team::team(const char* name, const char* country, const char* city, const char* formation, unsigned int money){
@@ -58,9 +91,37 @@ team::team(const char* name, const char* country, const char* city, const char* 
     this->yellow_cards_ = 0; //yellow_cards count
 
     this->money_ = money;
+
+    this->trainer_ = nullptr;
 }
 
-team::team(const char* name, const char* country, const char* city, const char* formation, unsigned int goals, unsigned int matches, unsigned int red_cards, unsigned int yellow_cards){
+team::team(const char* name, const char* country, const char* city, const char* formation, trainer* trainer, unsigned int money){
+    this->name_ = new char[strlen(name)];
+    this->country_ = new char[strlen(country)];
+    this->city_ = new char[strlen(city)];
+    this->formation_ = new char[strlen(formation)];
+
+    strcpy(this->name_, name); //copy context
+    strcpy(this->country_, country);
+    strcpy(this->city_, city);
+    strcpy(this->formation_, formation);
+
+    for (int i = 0; i < 11; i++) pitch_players_[i] = 0;
+
+    this->players_ = nullptr;
+    this->players_count_ = 0;
+
+    this->goals_ = 0; //goals count
+    this->matches_ = 0; //matches_count
+    this->red_cards_ = 0; //red_cards count
+    this->yellow_cards_ = 0; //yellow_cards count
+
+    this->money_ = money;
+
+    this->trainer_ = trainer;
+}
+
+team::team(const char* name, const char* country, const char* city, const char* formation, unsigned int matches, unsigned int goals, unsigned int red_cards, unsigned int yellow_cards){
     this->name_ = new char[strlen(name)];
     this->country_ = new char[strlen(country)];
     this->city_ = new char[strlen(city)];
@@ -87,9 +148,42 @@ team::team(const char* name, const char* country, const char* city, const char* 
     this->yellow_cards_ = yellow_cards; //yellow_cards count
 
     this->money_ = 0;
+
+    this->trainer_ = nullptr;
 }
 
-team::team(const char* name, const char* country, const char* city, const char* formation, unsigned int goals, unsigned int matches, unsigned int red_cards, unsigned int yellow_cards, unsigned int money){
+team::team(const char* name, const char* country, const char* city, const char* formation, trainer* trainer, unsigned int matches, unsigned int goals, unsigned int red_cards, unsigned int yellow_cards){
+    this->name_ = new char[strlen(name)];
+    this->country_ = new char[strlen(country)];
+    this->city_ = new char[strlen(city)];
+    this->formation_ = new char[strlen(formation)];
+
+    assert(this->name_ == nullptr);
+    assert(this->country_ == nullptr);
+    assert(this->city_ == nullptr);
+    assert(this->formation_ == nullptr);
+
+    strcpy(this->name_, name); //copy context
+    strcpy(this->country_, country);
+    strcpy(this->city_, city);
+    strcpy(this->formation_, formation);
+
+    for (int i = 0; i < 11; i++) pitch_players_[i] = 0;
+
+    this->players_ = nullptr;
+    this->players_count_ = 0;
+
+    this->goals_ = goals; //goals count
+    this->matches_ = matches; //matches_count
+    this->red_cards_ = red_cards; //red_cards count
+    this->yellow_cards_ = yellow_cards; //yellow_cards count
+
+    this->money_ = 0;
+
+    this->trainer_ = trainer;
+}
+
+team::team(const char* name, const char* country, const char* city, const char* formation, unsigned int matches, unsigned int goals, unsigned int red_cards, unsigned int yellow_cards, unsigned int money){
     this->name_ = new char[strlen(name)];
     this->country_ = new char[strlen(country)];
     this->city_ = new char[strlen(city)];
@@ -116,6 +210,39 @@ team::team(const char* name, const char* country, const char* city, const char* 
     this->yellow_cards_ = yellow_cards; //yellow_cards count
 
     this->money_ = money;
+
+    this->trainer_ = nullptr;
+}
+
+team::team(const char* name, const char* country, const char* city, const char* formation, trainer* trainer, unsigned int matches, unsigned int goals, unsigned int red_cards, unsigned int yellow_cards, unsigned int money){
+    this->name_ = new char[strlen(name)];
+    this->country_ = new char[strlen(country)];
+    this->city_ = new char[strlen(city)];
+    this->formation_ = new char[strlen(formation)];
+
+    assert(this->name_ == nullptr);
+    assert(this->country_ == nullptr);
+    assert(this->city_ == nullptr);
+    assert(this->formation_ == nullptr);
+
+    strcpy(this->name_, name); //copy context
+    strcpy(this->country_, country);
+    strcpy(this->city_, city);
+    strcpy(this->formation_, formation);
+
+    for (int i = 0; i < 11; i++) pitch_players_[i] = 0;
+
+    this->players_ = nullptr;
+    this->players_count_ = 0;
+
+    this->goals_ = goals; //goals count
+    this->matches_ = matches; //matches_count
+    this->red_cards_ = red_cards; //red_cards count
+    this->yellow_cards_ = yellow_cards; //yellow_cards count
+
+    this->money_ = money;
+
+    this->trainer_ = trainer;
 }
 
 team::~team(){
@@ -350,7 +477,7 @@ void team::set_player_position(player* p, unsigned char pos){
 
     unsigned int team::buy(team* t, player* p){
         unsigned long int cost; //cost of player
-        if (t == nullptr) return 1; //error - pointer to team from which to but player is null
+        if (t == nullptr) return 1; //error - pointer to team from which to buy player is null
         if (p == nullptr) return 1; //error - no player
 
         for (unsigned int i = 0; i < t->players_count_; i++){
@@ -373,7 +500,7 @@ void team::set_player_position(player* p, unsigned char pos){
         player* p;
         unsigned long int cost; //cost of player
 
-        if (t == nullptr) return 1; //error - pointer to team from which to but player is null
+        if (t == nullptr) return 1; //error - pointer to team from which to buy player is null
         if (name == nullptr || surname == nullptr) return 1; //no player
 
         p = t->find(name, surname);
@@ -393,7 +520,7 @@ void team::set_player_position(player* p, unsigned char pos){
     unsigned int team::buy(team* t, const char* name, const char* surname, const char* country){
         player* p;
         unsigned long int cost; //cost of player
-        if (t == nullptr) return 1; //error - pointer to team from which to but player is null
+        if (t == nullptr) return 1; //error - pointer to team from which to buy player is null
         if (name == nullptr || surname == nullptr || country == nullptr) return 2; //no player
 
         p = t->find(name, surname, country);
@@ -411,7 +538,50 @@ void team::set_player_position(player* p, unsigned char pos){
         return 0; //success
     }
 
-    void team_test(){
+    unsigned int team::transfer(team* t, player* p){
+        if (t == nullptr) return 1; //error - pointer to team from which to transfer player is null
+        if (p == nullptr) return 1; //error - no player
+
+        for (unsigned int i = 0; i < t->players_count_; i++){
+            if(t->players_[i] == p){
+                    t->remove_player(p);
+                    this->add_player(p);
+                    return 0; //success
+            }
+        }
+
+        return 2; //no players in team from which to transfer player
+    }
+    unsigned int team::transfer(team* t, const char* name, const char* surname){
+        player* p;
+
+        if (t == nullptr) return 1; //error - pointer to team from which to transfer player is null
+        if (name == nullptr || surname == nullptr) return 1; //no player
+
+        p = t->find(name, surname);
+        if (p == nullptr) return 2; //no players in team from which to transfer player
+
+        t->remove_player(p);
+        this->add_player(p);
+
+        return 0; //success
+    }
+    unsigned int team::transfer(team* t, const char* name, const char* surname, const char* country){
+        player* p;
+
+        if (t == nullptr) return 1; //error - pointer to team from which to transfer player is null
+        if (name == nullptr || surname == nullptr) return 1; //no player
+
+        p = t->find(name, surname);
+        if (p == nullptr) return 2; //no players in team from which to transfer player
+
+        t->remove_player(p);
+        this->add_player(p);
+
+        return 0; //success
+    }
+
+    void team_test(){ //test function for class team
         team t1("FC BARCELONA", "SPAIN", "BARCELONA", "4-3-3", 700000000);
         team t2("TEST TEAM", "POLAND", "WARSAW", "4-3-3", 800000000);
         player p1("Lionel", "Messi", "1987-06-24", "Argentina",67, 169,561,491,195,1,70,580000000);

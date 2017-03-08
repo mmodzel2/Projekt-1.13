@@ -2,6 +2,7 @@
 #define _TEAM_HPP
 
 #include "player.hpp"
+#include "trainer.hpp"
 
 class team{
 private:
@@ -14,6 +15,8 @@ private:
 	player* pitch_players_[11];
 	player** players_; //rest of field
 
+	trainer* trainer_;
+
 	unsigned int players_count_;
 
     unsigned int goals_; //goals count
@@ -24,9 +27,13 @@ private:
     long int money_;
 public:
     team(const char* name, const char* country, const char* city, const char* formation);
-    team(const char* name, const char* country, const char* city, const char* formation, const unsigned int money);
-    team(const char* name, const char* country, const char* city, const char* formation, unsigned int goals, unsigned int matches, unsigned int red_cards, unsigned int yellow_cards);
-    team(const char* name, const char* country, const char* city, const char* formation, unsigned int goals, unsigned int matches, unsigned int red_cards, unsigned int yellow_cards, unsigned int money);
+    team(const char* name, const char* country, const char* city, const char* formation, trainer* trainer);
+    team(const char* name, const char* country, const char* city, const char* formation, unsigned int money);
+    team(const char* name, const char* country, const char* city, const char* formation, trainer* trainer, unsigned int money);
+    team(const char* name, const char* country, const char* city, const char* formation, unsigned int matches, unsigned int goals, unsigned int red_cards, unsigned int yellow_cards);
+    team(const char* name, const char* country, const char* city, const char* formation, trainer* trainer, unsigned int matches, unsigned int goals, unsigned int red_cards, unsigned int yellow_cards);
+    team(const char* name, const char* country, const char* city, const char* formation, unsigned int matches, unsigned int goals, unsigned int red_cards, unsigned int yellow_cards, unsigned int money);
+    team(const char* name, const char* country, const char* city, const char* formation, trainer* trainer, unsigned int matches, unsigned int goals, unsigned int red_cards, unsigned int yellow_cards, unsigned int money);
     ~team();
 
     player* get_player_position(unsigned char pos);
@@ -78,6 +85,10 @@ public:
     unsigned int buy(team* t, player* p);
     unsigned int buy(team* t, const char* name, const char* surname);
     unsigned int buy(team* t, const char* name, const char* surname, const char* country);
+
+    unsigned int transfer(team* t, player* p);
+    unsigned int transfer(team* t, const char* name, const char* surname);
+    unsigned int transfer(team* t, const char* name, const char* surname, const char* country);
 };
 
 #endif // _TEAM_HPP

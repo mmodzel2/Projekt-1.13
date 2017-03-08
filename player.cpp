@@ -2,8 +2,6 @@
 #include "player.hpp"
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country){
-    unsigned int day, month, year;
-
     this->name_ = new char[strlen(name)];
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
@@ -12,13 +10,9 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     strcpy(this->surname_, surname);
     strcpy(this->country_, country);
 
-    year = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
-    month = date_of_birth[5]*10+date_of_birth[6];
-    day = date_of_birth[8]*10+date_of_birth[9];
-
-    this->day_of_birth_ = day;
-    this->month_of_birth_ = month;
-    this->year_of_birth_ = year;
+    this->year_of_birth_ = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
+    this->month_of_birth_ = date_of_birth[5]*10+date_of_birth[6];
+    this->day_of_birth_ = date_of_birth[8]*10+date_of_birth[9];
 
     this->cost_ = 0; //values are not known
     this->wage_ = 0;
@@ -33,8 +27,6 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country, unsigned long int cost){
-    unsigned int day, month, year;
-
     this->name_ = new char[strlen(name)];
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
@@ -43,13 +35,9 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     strcpy(this->surname_, surname);
     strcpy(this->country_, country);
 
-    year = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
-    month = date_of_birth[5]*10+date_of_birth[6];
-    day = date_of_birth[8]*10+date_of_birth[9];
-
-    this->day_of_birth_ = day;
-    this->month_of_birth_ = month;
-    this->year_of_birth_ = year;
+    this->year_of_birth_ = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
+    this->month_of_birth_ = date_of_birth[5]*10+date_of_birth[6];
+    this->day_of_birth_ = date_of_birth[8]*10+date_of_birth[9];
 
     this->cost_ = cost;
     //values are not known
@@ -65,8 +53,6 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country, const unsigned char wage, const unsigned char growth){
-    unsigned int day, month, year;
-
     this->name_ = new char[strlen(name)];
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
@@ -75,13 +61,9 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     strcpy(this->surname_, surname);
     strcpy(this->country_, country);
 
-    year = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
-    month = date_of_birth[5]*10+date_of_birth[6];
-    day = date_of_birth[8]*10+date_of_birth[9];
-
-    this->day_of_birth_ = day;
-    this->month_of_birth_ = month;
-    this->year_of_birth_ = year;
+    this->year_of_birth_ = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
+    this->month_of_birth_ = date_of_birth[5]*10+date_of_birth[6];
+    this->day_of_birth_ = date_of_birth[8]*10+date_of_birth[9];
 
     this->wage_ = wage;
     this->growth_ = growth;
@@ -96,8 +78,6 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country, const unsigned char wage, const unsigned char growth, unsigned long int cost){
-    unsigned int day, month, year;
-
     this->name_ = new char[strlen(name)];
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
@@ -106,13 +86,9 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     strcpy(this->surname_, surname);
     strcpy(this->country_, country);
 
-    year = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
-    month = date_of_birth[5]*10+date_of_birth[6];
-    day = date_of_birth[8]*10+date_of_birth[9];
-
-    this->day_of_birth_ = day;
-    this->month_of_birth_ = month;
-    this->year_of_birth_ = year;
+    this->year_of_birth_ = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
+    this->month_of_birth_ = date_of_birth[5]*10+date_of_birth[6];
+    this->day_of_birth_ = date_of_birth[8]*10+date_of_birth[9];
 
     this->wage_ = wage;
     this->growth_ = growth;
@@ -128,8 +104,6 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country, const unsigned char wage, const unsigned char growth, const unsigned int matches, const unsigned int goals, const unsigned int assists){
-    unsigned int day, month, year;
-
     this->name_ = new char[strlen(name)];
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
@@ -138,13 +112,9 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     strcpy(this->surname_, surname);
     strcpy(this->country_, country);
 
-    year = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
-    month = date_of_birth[5]*10+date_of_birth[6];
-    day = date_of_birth[8]*10+date_of_birth[9];
-
-    this->day_of_birth_ = day;
-    this->month_of_birth_ = month;
-    this->year_of_birth_ = year;
+    this->year_of_birth_ = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
+    this->month_of_birth_ = date_of_birth[5]*10+date_of_birth[6];
+    this->day_of_birth_ = date_of_birth[8]*10+date_of_birth[9];
 
     this->wage_ = wage;
     this->growth_ = growth;
@@ -159,8 +129,6 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country, const unsigned char wage, const unsigned char growth, const unsigned int matches, const unsigned int goals, const unsigned int assists, const unsigned int red_cards, const unsigned int yellow_cards){
-    unsigned int day, month, year;
-
     this->name_ = new char[strlen(name)];
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
@@ -169,13 +137,9 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     strcpy(this->surname_, surname);
     strcpy(this->country_, country);
 
-    year = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
-    month = date_of_birth[5]*10+date_of_birth[6];
-    day = date_of_birth[8]*10+date_of_birth[9];
-
-    this->day_of_birth_ = day;
-    this->month_of_birth_ = month;
-    this->year_of_birth_ = year;
+    this->year_of_birth_ = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
+    this->month_of_birth_ = date_of_birth[5]*10+date_of_birth[6];
+    this->day_of_birth_ = date_of_birth[8]*10+date_of_birth[9];
 
     this->wage_ = wage;
     this->growth_ = growth;
@@ -190,8 +154,6 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country, const unsigned char wage, const unsigned char growth, const unsigned int matches, const unsigned int goals, const unsigned int assists, const unsigned int red_cards, const unsigned int yellow_cards, unsigned long int cost){
-    unsigned int day, month, year;
-
     this->name_ = new char[strlen(name)];
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
@@ -200,13 +162,9 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     strcpy(this->surname_, surname);
     strcpy(this->country_, country);
 
-    year = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
-    month = date_of_birth[5]*10+date_of_birth[6];
-    day = date_of_birth[8]*10+date_of_birth[9];
-
-    this->day_of_birth_ = day;
-    this->month_of_birth_ = month;
-    this->year_of_birth_ = year;
+    this->year_of_birth_ = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
+    this->month_of_birth_ = date_of_birth[5]*10+date_of_birth[6];
+    this->day_of_birth_ = date_of_birth[8]*10+date_of_birth[9];
 
     this->wage_ = wage;
     this->growth_ = growth;
@@ -221,8 +179,6 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country, const unsigned char wage, const unsigned char growth, const unsigned int matches, const unsigned int goals, const unsigned int assists, unsigned long int cost){
-    unsigned int day, month, year;
-
     this->name_ = new char[strlen(name)];
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
@@ -231,13 +187,9 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     strcpy(this->surname_, surname);
     strcpy(this->country_, country);
 
-    year = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
-    month = date_of_birth[5]*10+date_of_birth[6];
-    day = date_of_birth[8]*10+date_of_birth[9];
-
-    this->day_of_birth_ = day;
-    this->month_of_birth_ = month;
-    this->year_of_birth_ = year;
+    this->year_of_birth_ = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
+    this->month_of_birth_ = date_of_birth[5]*10+date_of_birth[6];
+    this->day_of_birth_ = date_of_birth[8]*10+date_of_birth[9];
 
     this->wage_ = wage;
     this->growth_ = growth;

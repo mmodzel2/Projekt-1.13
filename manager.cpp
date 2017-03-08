@@ -1,12 +1,20 @@
 #include <cstring>
 #include <cstdarg>
+#include <iostream>
+#include <cassert>
 
 #include "manager.hpp"
+
+using namespace std;
 
 manager::manager(const char* name, const char* surname, const char* country){
     this->name_ = new char[strlen(name)];
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
+
+    assert(this->name_ != nullptr);
+    assert(this->surname_ != nullptr);
+    assert(this->country_ != nullptr);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -20,6 +28,10 @@ manager::manager(const char* name, const char* surname, const char* country, tea
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
 
+    assert(this->name_ != nullptr);
+    assert(this->surname_ != nullptr);
+    assert(this->country_ != nullptr);
+
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
     strcpy(this->country_, country);
@@ -31,6 +43,27 @@ manager::~manager(){
     delete this->name_;
     delete this->surname_;
     delete this->country_;
+}
+
+void manager::delete_team(){ //delete team with players and trainer
+    if (this->team_ != nullptr){
+        this->team_->delete_players();
+
+        if (this->team_->get_trainer() != nullptr) delete this->team_->get_trainer();
+        delete this->team_;
+
+        this->team_ = nullptr;
+    }
+}
+
+void manager::delete_team_players(){ //delete team with players
+    if (this->team_ != nullptr){
+        this->team_->delete_players();
+
+        delete this->team_;
+
+        this->team_ = nullptr;
+    }
 }
 
     char* manager::get_name() const {return this->name_;}
@@ -71,4 +104,21 @@ manager::~manager(){
         va_end(va);
     }
 
+void manager_test(){
+    manager m("Adam", "Smith", "SPAIN");
+    team t("FC BARCELONA", "SPAIN", "BARCELONA", "4-3-3", 700000000);
+    player p("Lionel", "Messi", "1987-06-24", "Argentina",67,169,561,491,195,1,70,580000000);
 
+    m.set_team(&t);
+    t.add_player(&p, 10);
+    m.match(1, "Lionel", "Messi", 3, 1, 0, 1);
+
+    cout << "Test function" << endl;
+    cout << "Goals after match: " << t.get_goals() << endl;
+    cout << "Red cards after match: " << t.get_red_cards() << endl;
+    cout << "Yellow cards after match: " << t.get_yellow_cards() << endl << endl;
+    cout << "Player's goals after match: " << p.get_goals() << endl;
+    cout << "Player's red cards after match: " << p.get_red_cards() << endl;
+    cout << "Player's yellow cards after match: " << p.get_yellow_cards() << endl;
+    cout << "Player's assists after match: " << p.get_assists() << endl;
+}

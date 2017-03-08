@@ -36,6 +36,11 @@ public:
     team(const char* name, const char* country, const char* city, const char* formation, trainer* trainer, unsigned int matches, unsigned int goals, unsigned int red_cards, unsigned int yellow_cards, unsigned int money);
     ~team();
 
+    void delete_players();
+
+    trainer* get_trainer() const {return this->trainer_;}
+    void set_trainer(trainer* trainer);
+
     player* get_player_position(unsigned char pos);
     void set_player_position(player* p, unsigned char pos);
 

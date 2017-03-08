@@ -13,17 +13,17 @@ team::team(const char* name, const char* country, const char* city, const char* 
     this->city_ = new char[strlen(city)];
     this->formation_ = new char[strlen(formation)];
 
-    assert(this->name_ == nullptr);
-    assert(this->country_ == nullptr);
-    assert(this->city_ == nullptr);
-    assert(this->formation_ == nullptr);
+    assert(this->name_ != nullptr);
+    assert(this->country_ != nullptr);
+    assert(this->city_ != nullptr);
+    assert(this->formation_ != nullptr);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->country_, country);
     strcpy(this->city_, city);
     strcpy(this->formation_, formation);
 
-    for (int i = 0; i < 11; i++) pitch_players_[i] = 0;
+    for (int i = 0; i < 11; i++) pitch_players_[i] = nullptr;
 
     this->players_ = nullptr;
     this->players_count_ = 0;
@@ -44,17 +44,17 @@ team::team(const char* name, const char* country, const char* city, const char* 
     this->city_ = new char[strlen(city)];
     this->formation_ = new char[strlen(formation)];
 
-    assert(this->name_ == nullptr);
-    assert(this->country_ == nullptr);
-    assert(this->city_ == nullptr);
-    assert(this->formation_ == nullptr);
+    assert(this->name_ != nullptr);
+    assert(this->country_ != nullptr);
+    assert(this->city_ != nullptr);
+    assert(this->formation_ != nullptr);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->country_, country);
     strcpy(this->city_, city);
     strcpy(this->formation_, formation);
 
-    for (int i = 0; i < 11; i++) pitch_players_[i] = 0;
+    for (int i = 0; i < 11; i++) pitch_players_[i] = nullptr;
 
     this->players_ = nullptr;
     this->players_count_ = 0;
@@ -80,7 +80,7 @@ team::team(const char* name, const char* country, const char* city, const char* 
     strcpy(this->city_, city);
     strcpy(this->formation_, formation);
 
-    for (int i = 0; i < 11; i++) pitch_players_[i] = 0;
+    for (int i = 0; i < 11; i++) pitch_players_[i] = nullptr;
 
     this->players_ = nullptr;
     this->players_count_ = 0;
@@ -106,7 +106,7 @@ team::team(const char* name, const char* country, const char* city, const char* 
     strcpy(this->city_, city);
     strcpy(this->formation_, formation);
 
-    for (int i = 0; i < 11; i++) pitch_players_[i] = 0;
+    for (int i = 0; i < 11; i++) pitch_players_[i] = nullptr;
 
     this->players_ = nullptr;
     this->players_count_ = 0;
@@ -127,17 +127,17 @@ team::team(const char* name, const char* country, const char* city, const char* 
     this->city_ = new char[strlen(city)];
     this->formation_ = new char[strlen(formation)];
 
-    assert(this->name_ == nullptr);
-    assert(this->country_ == nullptr);
-    assert(this->city_ == nullptr);
-    assert(this->formation_ == nullptr);
+    assert(this->name_ != nullptr);
+    assert(this->country_ != nullptr);
+    assert(this->city_ != nullptr);
+    assert(this->formation_ != nullptr);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->country_, country);
     strcpy(this->city_, city);
     strcpy(this->formation_, formation);
 
-    for (int i = 0; i < 11; i++) pitch_players_[i] = 0;
+    for (int i = 0; i < 11; i++) pitch_players_[i] = nullptr;
 
     this->players_ = nullptr;
     this->players_count_ = 0;
@@ -158,17 +158,17 @@ team::team(const char* name, const char* country, const char* city, const char* 
     this->city_ = new char[strlen(city)];
     this->formation_ = new char[strlen(formation)];
 
-    assert(this->name_ == nullptr);
-    assert(this->country_ == nullptr);
-    assert(this->city_ == nullptr);
-    assert(this->formation_ == nullptr);
+    assert(this->name_ != nullptr);
+    assert(this->country_ != nullptr);
+    assert(this->city_ != nullptr);
+    assert(this->formation_ != nullptr);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->country_, country);
     strcpy(this->city_, city);
     strcpy(this->formation_, formation);
 
-    for (int i = 0; i < 11; i++) pitch_players_[i] = 0;
+    for (int i = 0; i < 11; i++) pitch_players_[i] = nullptr;
 
     this->players_ = nullptr;
     this->players_count_ = 0;
@@ -189,17 +189,17 @@ team::team(const char* name, const char* country, const char* city, const char* 
     this->city_ = new char[strlen(city)];
     this->formation_ = new char[strlen(formation)];
 
-    assert(this->name_ == nullptr);
-    assert(this->country_ == nullptr);
-    assert(this->city_ == nullptr);
-    assert(this->formation_ == nullptr);
+    assert(this->name_ != nullptr);
+    assert(this->country_ != nullptr);
+    assert(this->city_ != nullptr);
+    assert(this->formation_ != nullptr);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->country_, country);
     strcpy(this->city_, city);
     strcpy(this->formation_, formation);
 
-    for (int i = 0; i < 11; i++) pitch_players_[i] = 0;
+    for (int i = 0; i < 11; i++) pitch_players_[i] = nullptr;
 
     this->players_ = nullptr;
     this->players_count_ = 0;
@@ -220,17 +220,17 @@ team::team(const char* name, const char* country, const char* city, const char* 
     this->city_ = new char[strlen(city)];
     this->formation_ = new char[strlen(formation)];
 
-    assert(this->name_ == nullptr);
-    assert(this->country_ == nullptr);
-    assert(this->city_ == nullptr);
-    assert(this->formation_ == nullptr);
+    assert(this->name_ != nullptr);
+    assert(this->country_ != nullptr);
+    assert(this->city_ != nullptr);
+    assert(this->formation_ != nullptr);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->country_, country);
     strcpy(this->city_, city);
     strcpy(this->formation_, formation);
 
-    for (int i = 0; i < 11; i++) pitch_players_[i] = 0;
+    for (int i = 0; i < 11; i++) pitch_players_[i] = nullptr;
 
     this->players_ = nullptr;
     this->players_count_ = 0;
@@ -250,6 +250,22 @@ team::~team(){
     delete this->country_;
     delete this->city_;
     delete this->formation_;
+}
+
+void team::set_trainer(trainer* trainer){this->trainer_ = trainer;}
+
+void team::delete_players(){
+    if (this->players_ != nullptr){
+        for (unsigned int i = 0; i < this->players_count_; i++)
+            delete this->players_[i];
+
+        delete this->players_; //free memory reserved by players list
+
+        this->players_ = nullptr;
+
+        for (unsigned int i = 0; i < 11; i++)
+            this->pitch_players_[i] = nullptr;
+    }
 }
 
 unsigned int team::add_player(player* p){
@@ -584,8 +600,10 @@ void team::set_player_position(player* p, unsigned char pos){
     void team_test(){ //test function for class team
         team t1("FC BARCELONA", "SPAIN", "BARCELONA", "4-3-3", 700000000);
         team t2("TEST TEAM", "POLAND", "WARSAW", "4-3-3", 800000000);
-        player p1("Lionel", "Messi", "1987-06-24", "Argentina",67, 169,561,491,195,1,70,580000000);
+        player p1("Lionel", "Messi", "1987-06-24", "Argentina",67,169,561,491,195,1,70,580000000);
         t1.add_player(&p1, 10);
+
+        cout << "Test function" << endl;
         cout << "Goals before match: " << t1.get_goals() << endl;
         t1.add_goals("Lionel", "Messi", 3);
         cout << "Goals after match: " << t1.get_goals() << endl;

@@ -1,10 +1,19 @@
 #include <cstring>
+#include <iostream>
+#include <cassert>
+
 #include "player.hpp"
+
+using namespace std;
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country){
     this->name_ = new char[strlen(name)];
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
+
+    assert(this->name_ != nullptr);
+    assert(this->surname_ != nullptr);
+    assert(this->country_ != nullptr);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -30,6 +39,10 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     this->name_ = new char[strlen(name)];
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
+
+    assert(this->name_ != nullptr);
+    assert(this->surname_ != nullptr);
+    assert(this->country_ != nullptr);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -57,6 +70,10 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
 
+    assert(this->name_ != nullptr);
+    assert(this->surname_ != nullptr);
+    assert(this->country_ != nullptr);
+
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
     strcpy(this->country_, country);
@@ -81,6 +98,10 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     this->name_ = new char[strlen(name)];
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
+
+    assert(this->name_ != nullptr);
+    assert(this->surname_ != nullptr);
+    assert(this->country_ != nullptr);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -108,6 +129,10 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
 
+    assert(this->name_ != nullptr);
+    assert(this->surname_ != nullptr);
+    assert(this->country_ != nullptr);
+
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
     strcpy(this->country_, country);
@@ -132,6 +157,10 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     this->name_ = new char[strlen(name)];
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
+
+    assert(this->name_ != nullptr);
+    assert(this->surname_ != nullptr);
+    assert(this->country_ != nullptr);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -158,6 +187,10 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
 
+    assert(this->name_ != nullptr);
+    assert(this->surname_ != nullptr);
+    assert(this->country_ != nullptr);
+
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
     strcpy(this->country_, country);
@@ -182,6 +215,10 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
     this->name_ = new char[strlen(name)];
     this->surname_ = new char[strlen(surname)];
     this->country_ = new char[strlen(country)];
+
+    assert(this->name_ != nullptr);
+    assert(this->surname_ != nullptr);
+    assert(this->country_ != nullptr);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -238,3 +275,17 @@ player::~player(){
     void player::add_matches(unsigned int matches_to_add) {this->matches_+=matches_to_add;}
     void player::add_red_cards(unsigned int red_cards_to_add) {this->red_cards_+=red_cards_to_add;}
     void player::add_yellow_cards(unsigned int yellow_cards_to_add) {this->yellow_cards_+=yellow_cards_to_add;}
+
+    void player_test(){
+        player p1("Lionel", "Messi", "1987-06-24", "Argentina",67,169,561,491,195,1,70,580000000);
+        p1.add_matches(3);
+        p1.add_yellow_cards();
+
+        cout << "Test function" << endl;
+        cout << "Player's name: " << p1.get_name() << endl;
+        cout << "Player's surname: " << p1.get_surname() << endl;
+        cout << "Player's country: " << p1.get_country() << endl;
+
+        cout << "Player's matches count: " << p1.get_matches() << endl;
+        cout << "Player's yellow cards: " << p1.get_yellow_cards() << endl;
+    }

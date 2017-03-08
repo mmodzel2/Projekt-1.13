@@ -16,6 +16,9 @@ public:
     manager(const char* name, const char* surname, const char* country, team* team);
     ~manager();
 
+    void delete_team();
+    void delete_team_players();
+
     team* get_team() const;
     void set_team(team* team);
 

@@ -68,6 +68,8 @@ public:
     unsigned int get_yellow_cards() const;
     long int get_money() const;
 
+    unsigned int get_players_count() const;
+
     void add_matches(unsigned int matches);
     void add_money(long int money);
 
@@ -94,6 +96,9 @@ public:
     unsigned int transfer(team* t, player* p);
     unsigned int transfer(team* t, const char* name, const char* surname);
     unsigned int transfer(team* t, const char* name, const char* surname, const char* country);
+
+    team & operator+=(player &p){add_player(&p); return *this;}
+    team & operator-=(player &p){remove_player(&p); return *this;}
 };
 
 #endif // _TEAM_HPP

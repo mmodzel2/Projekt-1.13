@@ -7,9 +7,17 @@
 using namespace std;
 
 trainer::trainer(const char* name, const char* surname, const char* country){
-    this->name_ = new char[strlen(name)];
-    this->surname_ = new char[strlen(surname)];
-    this->country_ = new char[strlen(country)];
+    unsigned int strlen_name = strlen(name);
+    unsigned int strlen_surname = strlen(surname);
+    unsigned int strlen_country = strlen(country);
+
+    this->name_ = new char[strlen_name+1];
+    this->surname_ = new char[strlen_surname+1];
+    this->country_ = new char[strlen_country+1];
+
+    this->name_[strlen_name] = 0;
+    this->surname_[strlen_surname] = 0;
+    this->country_[strlen_country] = 0;
 
     assert(this->name_ != nullptr);
     assert(this->surname_ != nullptr);
@@ -25,13 +33,23 @@ trainer::trainer(const char* name, const char* surname, const char* country){
 }
 
 trainer::trainer(const char* name, const char* surname, const char* country, const char* date_of_birth){
-    this->name_ = new char[strlen(name)];
-    this->surname_ = new char[strlen(surname)];
-    this->country_ = new char[strlen(country)];
+    unsigned int strlen_name = strlen(name);
+    unsigned int strlen_surname = strlen(surname);
+    unsigned int strlen_country = strlen(country);
+
+    this->name_ = new char[strlen_name+1];
+    this->surname_ = new char[strlen_surname+1];
+    this->country_ = new char[strlen_country+1];
+
+    this->name_[strlen_name] = 0;
+    this->surname_[strlen_surname] = 0;
+    this->country_[strlen_country] = 0;
 
     assert(this->name_ != nullptr);
     assert(this->surname_ != nullptr);
     assert(this->country_ != nullptr);
+
+    assert(strlen(date_of_birth) >= 10);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -43,9 +61,9 @@ trainer::trainer(const char* name, const char* surname, const char* country, con
 }
 
 trainer::~trainer(){
-    delete this->name_;
-    delete this->surname_;
-    delete this->country_;
+    delete[] this->name_;
+    delete[] this->surname_;
+    delete[] this->country_;
 }
 
     char* trainer::get_name() const {return this->name_;}
@@ -58,7 +76,7 @@ trainer::~trainer(){
 
     void trainer_test(){
         trainer* t;
-        t = new trainer("George", "Brooklyn", "USA", "1990-03-09");
+        t = new trainer("George", "Brooklyn", "the USA", "1990-03-09");
 
         cout << "Test function" << endl;
         cout << "Trainer name: " << t->get_name() << endl;

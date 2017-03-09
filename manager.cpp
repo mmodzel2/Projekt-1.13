@@ -8,9 +8,17 @@
 using namespace std;
 
 manager::manager(const char* name, const char* surname, const char* country){
-    this->name_ = new char[strlen(name)];
-    this->surname_ = new char[strlen(surname)];
-    this->country_ = new char[strlen(country)];
+    unsigned int strlen_name = strlen(name);
+    unsigned int strlen_surname = strlen(surname);
+    unsigned int strlen_country = strlen(country);
+
+    this->name_ = new char[strlen_name+1];
+    this->surname_ = new char[strlen_surname+1];
+    this->country_ = new char[strlen_country+1];
+
+    this->name_[strlen_name] = 0;
+    this->surname_[strlen_surname] = 0;
+    this->country_[strlen_country] = 0;
 
     assert(this->name_ != nullptr);
     assert(this->surname_ != nullptr);
@@ -24,9 +32,17 @@ manager::manager(const char* name, const char* surname, const char* country){
 }
 
 manager::manager(const char* name, const char* surname, const char* country, team* team){
-    this->name_ = new char[strlen(name)];
-    this->surname_ = new char[strlen(surname)];
-    this->country_ = new char[strlen(country)];
+    unsigned int strlen_name = strlen(name);
+    unsigned int strlen_surname = strlen(surname);
+    unsigned int strlen_country = strlen(country);
+
+    this->name_ = new char[strlen_name+1];
+    this->surname_ = new char[strlen_surname+1];
+    this->country_ = new char[strlen_country+1];
+
+    this->name_[strlen_name] = 0;
+    this->surname_[strlen_surname] = 0;
+    this->country_[strlen_country] = 0;
 
     assert(this->name_ != nullptr);
     assert(this->surname_ != nullptr);
@@ -40,9 +56,9 @@ manager::manager(const char* name, const char* surname, const char* country, tea
 }
 
 manager::~manager(){
-    delete this->name_;
-    delete this->surname_;
-    delete this->country_;
+    delete[] this->name_;
+    delete[] this->surname_;
+    delete[] this->country_;
 }
 
 void manager::delete_team(){ //delete team with players and trainer

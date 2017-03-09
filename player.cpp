@@ -7,13 +7,23 @@
 using namespace std;
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country){
-    this->name_ = new char[strlen(name)];
-    this->surname_ = new char[strlen(surname)];
-    this->country_ = new char[strlen(country)];
+    unsigned int strlen_name = strlen(name);
+    unsigned int strlen_surname = strlen(surname);
+    unsigned int strlen_country = strlen(country);
+
+    this->name_ = new char[strlen_name+1];
+    this->surname_ = new char[strlen_surname+1];
+    this->country_ = new char[strlen_country+1];
+
+    this->name_[strlen_name] = 0;
+    this->surname_[strlen_surname] = 0;
+    this->country_[strlen_country] = 0;
 
     assert(this->name_ != nullptr);
     assert(this->surname_ != nullptr);
     assert(this->country_ != nullptr);
+
+    assert(strlen(date_of_birth) >= 10);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -36,13 +46,23 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country, unsigned long int cost){
-    this->name_ = new char[strlen(name)];
-    this->surname_ = new char[strlen(surname)];
-    this->country_ = new char[strlen(country)];
+    unsigned int strlen_name = strlen(name);
+    unsigned int strlen_surname = strlen(surname);
+    unsigned int strlen_country = strlen(country);
+
+    this->name_ = new char[strlen_name+1];
+    this->surname_ = new char[strlen_surname+1];
+    this->country_ = new char[strlen_country+1];
+
+    this->name_[strlen_name] = 0;
+    this->surname_[strlen_surname] = 0;
+    this->country_[strlen_country] = 0;
 
     assert(this->name_ != nullptr);
     assert(this->surname_ != nullptr);
     assert(this->country_ != nullptr);
+
+    assert(strlen(date_of_birth) >= 10);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -66,13 +86,23 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country, const unsigned char wage, const unsigned char growth){
-    this->name_ = new char[strlen(name)];
-    this->surname_ = new char[strlen(surname)];
-    this->country_ = new char[strlen(country)];
+    unsigned int strlen_name = strlen(name);
+    unsigned int strlen_surname = strlen(surname);
+    unsigned int strlen_country = strlen(country);
+
+    this->name_ = new char[strlen_name+1];
+    this->surname_ = new char[strlen_surname+1];
+    this->country_ = new char[strlen_country+1];
+
+    this->name_[strlen_name] = 0;
+    this->surname_[strlen_surname] = 0;
+    this->country_[strlen_country] = 0;
 
     assert(this->name_ != nullptr);
     assert(this->surname_ != nullptr);
     assert(this->country_ != nullptr);
+
+    assert(strlen(date_of_birth) >= 10);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -95,13 +125,23 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country, const unsigned char wage, const unsigned char growth, unsigned long int cost){
-    this->name_ = new char[strlen(name)];
-    this->surname_ = new char[strlen(surname)];
-    this->country_ = new char[strlen(country)];
+    unsigned int strlen_name = strlen(name);
+    unsigned int strlen_surname = strlen(surname);
+    unsigned int strlen_country = strlen(country);
+
+    this->name_ = new char[strlen_name+1];
+    this->surname_ = new char[strlen_surname+1];
+    this->country_ = new char[strlen_country+1];
+
+    this->name_[strlen_name] = 0;
+    this->surname_[strlen_surname] = 0;
+    this->country_[strlen_country] = 0;
 
     assert(this->name_ != nullptr);
     assert(this->surname_ != nullptr);
     assert(this->country_ != nullptr);
+
+    assert(strlen(date_of_birth) >= 10);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -125,13 +165,23 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country, const unsigned char wage, const unsigned char growth, const unsigned int matches, const unsigned int goals, const unsigned int assists){
-    this->name_ = new char[strlen(name)];
-    this->surname_ = new char[strlen(surname)];
-    this->country_ = new char[strlen(country)];
+    unsigned int strlen_name = strlen(name);
+    unsigned int strlen_surname = strlen(surname);
+    unsigned int strlen_country = strlen(country);
+
+    this->name_ = new char[strlen_name+1];
+    this->surname_ = new char[strlen_surname+1];
+    this->country_ = new char[strlen_country+1];
+
+    this->name_[strlen_name] = 0;
+    this->surname_[strlen_surname] = 0;
+    this->country_[strlen_country] = 0;
 
     assert(this->name_ != nullptr);
     assert(this->surname_ != nullptr);
     assert(this->country_ != nullptr);
+
+    assert(strlen(date_of_birth) >= 10);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -154,13 +204,23 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country, const unsigned char wage, const unsigned char growth, const unsigned int matches, const unsigned int goals, const unsigned int assists, const unsigned int red_cards, const unsigned int yellow_cards){
-    this->name_ = new char[strlen(name)];
-    this->surname_ = new char[strlen(surname)];
-    this->country_ = new char[strlen(country)];
+    unsigned int strlen_name = strlen(name);
+    unsigned int strlen_surname = strlen(surname);
+    unsigned int strlen_country = strlen(country);
+
+    this->name_ = new char[strlen_name+1];
+    this->surname_ = new char[strlen_surname+1];
+    this->country_ = new char[strlen_country+1];
+
+    this->name_[strlen_name] = 0;
+    this->surname_[strlen_surname] = 0;
+    this->country_[strlen_country] = 0;
 
     assert(this->name_ != nullptr);
     assert(this->surname_ != nullptr);
     assert(this->country_ != nullptr);
+
+    assert(strlen(date_of_birth) >= 10);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -183,13 +243,23 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country, const unsigned char wage, const unsigned char growth, const unsigned int matches, const unsigned int goals, const unsigned int assists, const unsigned int red_cards, const unsigned int yellow_cards, unsigned long int cost){
-    this->name_ = new char[strlen(name)];
-    this->surname_ = new char[strlen(surname)];
-    this->country_ = new char[strlen(country)];
+    unsigned int strlen_name = strlen(name);
+    unsigned int strlen_surname = strlen(surname);
+    unsigned int strlen_country = strlen(country);
+
+    this->name_ = new char[strlen_name+1];
+    this->surname_ = new char[strlen_surname+1];
+    this->country_ = new char[strlen_country+1];
+
+    this->name_[strlen_name] = 0;
+    this->surname_[strlen_surname] = 0;
+    this->country_[strlen_country] = 0;
 
     assert(this->name_ != nullptr);
     assert(this->surname_ != nullptr);
     assert(this->country_ != nullptr);
+
+    assert(strlen(date_of_birth) >= 10);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -212,13 +282,23 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::player(const char* name, const char* surname, const char* date_of_birth, const char* country, const unsigned char wage, const unsigned char growth, const unsigned int matches, const unsigned int goals, const unsigned int assists, unsigned long int cost){
-    this->name_ = new char[strlen(name)];
-    this->surname_ = new char[strlen(surname)];
-    this->country_ = new char[strlen(country)];
+    unsigned int strlen_name = strlen(name);
+    unsigned int strlen_surname = strlen(surname);
+    unsigned int strlen_country = strlen(country);
+
+    this->name_ = new char[strlen_name+1];
+    this->surname_ = new char[strlen_surname+1];
+    this->country_ = new char[strlen_country+1];
+
+    this->name_[strlen_name] = 0;
+    this->surname_[strlen_surname] = 0;
+    this->country_[strlen_country] = 0;
 
     assert(this->name_ != nullptr);
     assert(this->surname_ != nullptr);
     assert(this->country_ != nullptr);
+
+    assert(strlen(date_of_birth) >= 10);
 
     strcpy(this->name_, name); //copy context
     strcpy(this->surname_, surname);
@@ -241,9 +321,9 @@ player::player(const char* name, const char* surname, const char* date_of_birth,
 }
 
 player::~player(){
-    delete this->name_;
-    delete this->surname_;
-    delete this->country_;
+    delete[] this->name_;
+    delete[] this->surname_;
+    delete[] this->country_;
 }
 
     void player::set_cost(unsigned long int cost) {this->cost_ = cost;}

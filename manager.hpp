@@ -3,30 +3,47 @@
 
 #include "team.hpp"
 
-class manager{
+class Manager{
 private:
-    char* name_;
-    char* surname_;
-    char* country_;
+    const char* name_;
+    const char* surname_;
+    const char* country_;
 
-    team* team_;
+    Team* team_;
 
 public:
-    manager(const char* name, const char* surname, const char* country);
-    manager(const char* name, const char* surname, const char* country, team* team);
-    ~manager();
+    Manager(const char* name, const char* surname, const char* country);
+    Manager(const char* name, const char* surname, const char* country, Team* team);
+    ~Manager();
 
     void delete_team();
     void delete_team_players();
 
-    team* get_team() const;
-    void set_team(team* team);
+    Team* get_team() const;
+    void set_team(Team* team);
 
-    char* get_name() const;
-    char* get_surname() const;
-    char* get_country() const;
+    const char* get_name() const;
+    const char* get_surname() const;
+    const char* get_country() const;
 
     void match(unsigned int n, ...);
+    unsigned int match(Manager* vs_manager);
+
+    //functions for class Console
+    static unsigned int Create_Manager(Console* console, void** args);
+    static unsigned int Create_ManagerT(Console* console, void** args);
+
+    static unsigned int get_name(Console* console, void** args);
+    static unsigned int get_surname(Console* console, void** args);
+    static unsigned int get_country(Console* console, void** args);
+
+    static unsigned int get_team(Console* console, void** args);
+    static unsigned int set_team(Console* console, void** args);
+
+    static unsigned int delete_team(Console* console, void** args);
+    static unsigned int delete_team_players(Console* console, void** args);
+
+    static unsigned int match(Console* console, void** args);
 };
 
 #endif // _MANAGER_HPP

@@ -2,11 +2,12 @@
 #include <iostream>
 #include <cassert>
 
+#include "console.hpp"
 #include "trainer.hpp"
 
 using namespace std;
 
-trainer::trainer(const char* name, const char* surname, const char* country){
+Trainer::Trainer(const char* name, const char* surname, const char* country){
     unsigned int strlen_name = strlen(name);
     unsigned int strlen_surname = strlen(surname);
     unsigned int strlen_country = strlen(country);
@@ -15,24 +16,26 @@ trainer::trainer(const char* name, const char* surname, const char* country){
     this->surname_ = new char[strlen_surname+1];
     this->country_ = new char[strlen_country+1];
 
-    this->name_[strlen_name] = 0;
-    this->surname_[strlen_surname] = 0;
-    this->country_[strlen_country] = 0;
-
     assert(this->name_ != nullptr);
     assert(this->surname_ != nullptr);
     assert(this->country_ != nullptr);
 
-    strcpy(this->name_, name); //copy context
-    strcpy(this->surname_, surname);
-    strcpy(this->country_, country);
+    char* n = (char *)this->name_;
+    char* s = (char *)this->surname_;
+    char* c = (char *)this->country_;
 
-    this->year_of_birth_ = 0;
-    this->month_of_birth_ = 0;
-    this->day_of_birth_ = 0;
+    n[strlen_name] = 0;
+    s[strlen_surname] = 0;
+    c[strlen_name] = 0;
+
+    strcpy(n, name); //copy context
+    strcpy(s, surname);
+    strcpy(c, country);
+
+    this->date_of_birth_ = new Date("0000-00-00");
 }
 
-trainer::trainer(const char* name, const char* surname, const char* country, const char* date_of_birth){
+Trainer::Trainer(const char* name, const char* surname, const char* country, const char* date_of_birth){
     unsigned int strlen_name = strlen(name);
     unsigned int strlen_surname = strlen(surname);
     unsigned int strlen_country = strlen(country);
@@ -41,45 +44,173 @@ trainer::trainer(const char* name, const char* surname, const char* country, con
     this->surname_ = new char[strlen_surname+1];
     this->country_ = new char[strlen_country+1];
 
-    this->name_[strlen_name] = 0;
-    this->surname_[strlen_surname] = 0;
-    this->country_[strlen_country] = 0;
-
     assert(this->name_ != nullptr);
     assert(this->surname_ != nullptr);
     assert(this->country_ != nullptr);
 
-    assert(strlen(date_of_birth) >= 10);
+    assert(strlen(date_of_birth) != 10);
 
-    strcpy(this->name_, name); //copy context
-    strcpy(this->surname_, surname);
-    strcpy(this->country_, country);
+    char* n = (char *)this->name_;
+    char* s = (char *)this->surname_;
+    char* c = (char *)this->country_;
 
-    this->year_of_birth_ = date_of_birth[0]*1000+date_of_birth[1]*100+date_of_birth[2]*10+date_of_birth[3];
-    this->month_of_birth_ = date_of_birth[5]*10+date_of_birth[6];
-    this->day_of_birth_ = date_of_birth[8]*10+date_of_birth[9];
+    n[strlen_name] = 0;
+    s[strlen_surname] = 0;
+    c[strlen_name] = 0;
+
+    strcpy(n, name); //copy context
+    strcpy(s, surname);
+    strcpy(c, country);
+
+    this->date_of_birth_ = new Date(date_of_birth);
 }
 
-trainer::~trainer(){
+Trainer::~Trainer(){
     delete[] this->name_;
     delete[] this->surname_;
     delete[] this->country_;
+    delete this->date_of_birth_;
 }
 
-    char* trainer::get_name() const {return this->name_;}
-    char* trainer::get_surname() const {return this->surname_;}
-    char* trainer::get_country() const {return this->country_;}
+    const char* Trainer::get_name() const {return this->name_;}
+    const char* Trainer::get_surname() const {return this->surname_;}
+    const char* Trainer::get_country() const {return this->country_;}
 
-    unsigned char trainer::get_day_of_birth() const {return this->day_of_birth_;} //get player birth date
-    unsigned char trainer::get_month_of_birth() const {return this->month_of_birth_;}
-    unsigned short trainer::get_year_of_birth() const {return this->year_of_birth_;}
+    float Trainer::get_attack_multiplier() const {return this->attack_multiplier_;}
+    float Trainer::get_defense_multiplier() const {return this->defense_multiplier_;}
+    float Trainer::get_shoot_multiplier() const {return this->shoot_multiplier_;}
+    float Trainer::get_corner_multiplier() const {return this->corner_multiplier_;}
 
-    void trainer_test(){
-        trainer* t;
-        t = new trainer("George", "Brooklyn", "the USA", "1990-03-09");
+    void Trainer::set_attack_multiplier(float attack_multiplier) {if(attack_multiplier > 1.0) this->attack_multiplier_ = 1.0; else if(attack_multiplier < 0.0)this->attack_multiplier_ = 0.0; else this->attack_multiplier_ = attack_multiplier;}
+    void Trainer::set_defense_multiplier(float defense_multiplier) {if(defense_multiplier > 1.0) this->defense_multiplier_ = 1.0; else if(defense_multiplier < 0.0)this->defense_multiplier_ = 0.0; else this->defense_multiplier_ = defense_multiplier;}
+    void Trainer::set_shoot_multiplier(float shoot_multiplier) {if(shoot_multiplier > 1.0) this->shoot_multiplier_ = 1.0; else if(shoot_multiplier < 0.0)this->shoot_multiplier_ = 0.0; else this->shoot_multiplier_ = shoot_multiplier;}
+    void Trainer::set_corner_multiplier(float corner_multiplier) {if(corner_multiplier > 1.0) this->corner_multiplier_ = 1.0; else if(corner_multiplier < 0.0)this->corner_multiplier_ = 0.0; else this->corner_multiplier_ = corner_multiplier;}
 
-        cout << "Test function" << endl;
-        cout << "Trainer name: " << t->get_name() << endl;
-        cout << "Trainer surname: " << t->get_surname() << endl;
-        cout << "Trainer country: " << t->get_country() << endl;
+    unsigned int Trainer::Create_Trainer(Console* console, void** args){
+        /* Function for creating trainer - prepared to use with class console (args has pointers to arguments in the same order as in function
+        Trainer(const char* name, const char* surname, const char* country);*/
+        Trainer* tr = new Trainer((const char *)args[1],(const char *)args[2],(const char *)args[3]);
+        unsigned int ret = console->register_variable((const char *)args[0], tr);
+
+        if (ret == 1 || tr == nullptr){
+            if (tr != nullptr) delete tr;
+            (console->get_stream()) << "Lack of free memory. Player cannot be created." << endl;
+            return 2;
+        } else if (ret == 3) {
+            delete tr;
+            (console->get_stream()) << "Variable name reserved. Cannot create player with given variable name." << endl;
+            return 1;
+        }
+
+        (console->get_stream()) << "Trainer has been created." << endl;
+        return 0;
+    }
+    unsigned int Trainer::Create_TrainerD(Console* console, void** args){
+        /* Function for creating trainer - prepared to use with class console (args has pointers to arguments in the same order as in function
+        Trainer(const char* name, const char* surname, const char* country, const char* date_of_birth);*/
+        Trainer* tr = new Trainer((const char *)args[1],(const char *)args[2],(const char *)args[3],(const char *)args[4]);
+        unsigned int ret = console->register_variable((const char *)args[0], tr);
+        if (ret == 1 || tr == nullptr){
+            if (tr != nullptr) delete tr;
+            (console->get_stream()) << "Lack of free memory. Player cannot be created." << endl;
+            return 2;
+        } else if (ret == 3) {
+            delete tr;
+            (console->get_stream()) << "Variable name reserved. Cannot create player with given variable name." << endl;
+            return 1;
+        }
+
+        (console->get_stream()) << "Trainer has been created." << endl;
+        return 0;
+    }
+
+    unsigned int Trainer::get_name(Console* console, void** args){
+        if (args[0] == nullptr){
+            (console->get_stream()) << "Trainer does not exist." << endl;
+            return 1;
+        }
+        (console->get_stream()) << ((Trainer *)args[0])->get_name() << endl;
+        return 0;
+    }
+    unsigned int Trainer::get_surname(Console* console, void** args){
+        if (args[0] == nullptr){
+            (console->get_stream()) << "Trainer does not exist." << endl;
+            return 1;
+        }
+        (console->get_stream()) << ((Trainer *)args[0])->get_surname() << endl;
+        return 0;
+    }
+    unsigned int Trainer::get_country(Console* console, void** args){
+        if (args[0] == nullptr){
+            (console->get_stream()) << "Trainer does not exist." << endl;
+            return 1;
+        }
+        (console->get_stream()) << ((Trainer *)args[0])->get_country() << endl;
+        return 0;
+    }
+
+    unsigned int Trainer::get_attack_multiplier(Console* console, void** args){
+        if (args[0] == nullptr){
+            (console->get_stream()) << "Trainer does not exist." << endl;
+            return 1;
+        }
+        (console->get_stream()) << ((Trainer *)args[0])->get_attack_multiplier() << endl;
+        return 0;
+    }
+    unsigned int Trainer::get_defense_multiplier(Console* console, void** args){
+        if (args[0] == nullptr){
+            (console->get_stream()) << "Trainer does not exist." << endl;
+            return 1;
+        }
+        (console->get_stream()) << ((Trainer *)args[0])->get_defense_multiplier() << endl;
+        return 0;
+    }
+    unsigned int Trainer::get_shoot_multiplier(Console* console, void** args){
+        if (args[0] == nullptr){
+            (console->get_stream()) << "Trainer does not exist." << endl;
+            return 1;
+        }
+        (console->get_stream()) << ((Trainer *)args[0])->get_shoot_multiplier() << endl;
+        return 0;
+    }
+    unsigned int Trainer::get_corner_multiplier(Console* console, void** args){
+        if (args[0] == nullptr){
+            (console->get_stream()) << "Trainer does not exist." << endl;
+            return 1;
+        }
+        (console->get_stream()) << ((Trainer *)args[0])->get_corner_multiplier() << endl;
+        return 0;
+    }
+
+    unsigned int Trainer::set_attack_multiplier(Console* console, void** args){
+        if (args[0] == nullptr){
+            (console->get_stream()) << "Trainer does not exist." << endl;
+            return 1;
+        }
+        ((Trainer *)args[0])->set_attack_multiplier(*(float*)args[1]);
+        return 0;
+    }
+    unsigned int Trainer::set_defense_multiplier(Console* console, void** args){
+        if (args[0] == nullptr){
+            (console->get_stream()) << "Trainer does not exist." << endl;
+            return 1;
+        }
+        ((Trainer *)args[0])->set_defense_multiplier(*(float*)args[1]);
+        return 0;
+    }
+    unsigned int Trainer::set_shoot_multiplier(Console* console, void** args){
+        if (args[0] == nullptr){
+            (console->get_stream()) << "Trainer does not exist." << endl;
+            return 1;
+        }
+        ((Trainer *)args[0])->set_shoot_multiplier(*(float*)args[1]);
+        return 0;
+    }
+    unsigned int Trainer::set_corner_multiplier(Console* console, void** args){
+        if (args[0] == nullptr){
+            (console->get_stream()) << "Trainer does not exist." << endl;
+            return 1;
+        }
+        ((Trainer *)args[0])->set_corner_multiplier(*(float*)args[1]);
+        return 0;
     }

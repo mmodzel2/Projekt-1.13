@@ -1,28 +1,57 @@
 #ifndef _TRAINER_HPP
 #define _TRAINER_HPP
 
-class trainer{
-private:
-    char* name_;
-    char* surname_;
-    char* country_;
+#include "date.hpp"
 
-    unsigned char day_of_birth_; //player birth date
-    unsigned char month_of_birth_;
-    unsigned short year_of_birth_;
+class Trainer{
+private:
+    const char* name_;
+    const char* surname_;
+    const char* country_;
+
+    Date* date_of_birth_; //Trainer birth date
+
+    float attack_multiplier_; //chance 0.0 to 1.0 of improving players after success training
+    float defense_multiplier_;
+    float shoot_multiplier_;
+    float corner_multiplier_;
 
 public:
-    trainer(const char* name, const char* surname, const char* country);
-    trainer(const char* name, const char* surname, const char* country, const char* date_of_birth);
-    ~trainer();
+    Trainer(const char* name, const char* surname, const char* country);
+    Trainer(const char* name, const char* surname, const char* country, const char* date_of_birth);
+    ~Trainer();
 
-    char* get_name() const;
-    char* get_surname() const;
-    char* get_country() const;
+    const char* get_name() const;
+    const char* get_surname() const;
+    const char* get_country() const;
 
-    unsigned char get_day_of_birth() const; //get player birth date
-    unsigned char get_month_of_birth() const;
-    unsigned short get_year_of_birth() const;
+    float get_attack_multiplier() const;
+    float get_defense_multiplier() const;
+    float get_shoot_multiplier() const;
+    float get_corner_multiplier() const;
+
+    void set_attack_multiplier(float attack_multiplier);
+    void set_defense_multiplier(float defense_multiplier);
+    void set_shoot_multiplier(float shoot_multiplier);
+    void set_corner_multiplier(float corner_multiplier);
+
+    //functions for class Console
+    static unsigned int Create_Trainer(Console* console, void** args);
+    static unsigned int Create_TrainerD(Console* console, void** args);
+
+    static unsigned int get_name(Console* console, void** args);
+    static unsigned int get_surname(Console* console, void** args);
+    static unsigned int get_country(Console* console, void** args);
+
+    static unsigned int get_attack_multiplier(Console* console, void** args);
+    static unsigned int get_defense_multiplier(Console* console, void** args);
+    static unsigned int get_shoot_multiplier(Console* console, void** args);
+    static unsigned int get_corner_multiplier(Console* console, void** args);
+
+    static unsigned int set_attack_multiplier(Console* console, void** args);
+    static unsigned int set_defense_multiplier(Console* console, void** args);
+    static unsigned int set_shoot_multiplier(Console* console, void** args);
+    static unsigned int set_corner_multiplier(Console* console, void** args);
 };
 
 #endif // _TRAINER_HPP

@@ -1,3 +1,10 @@
+/*
+* Name: date.cpp
+* Purpose: Football manager
+* @author mmodzel2
+* @version 1.0 15-03-2017
+*/
+
 #include <cstring>
 #include <cassert>
 

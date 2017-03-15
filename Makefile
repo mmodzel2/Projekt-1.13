@@ -1,6 +1,6 @@
 CXX=g++
 CXXFLAGS=-Wall -g -std=c++11
-OBJS=main.o manager.o player.o team.o trainer.o
+OBJS=main.o manager.o player.o team.o trainer.o console.o date.o test.o
 OUT=projekt1.13.out
 
 all: $(OUT)

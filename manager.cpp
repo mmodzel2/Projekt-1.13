@@ -1,3 +1,10 @@
+/*
+* Name: manager.cpp
+* Purpose: Football manager
+* @author mmodzel2
+* @version 1.0 15-03-2017
+*/
+
 #include <cstring>
 #include <cstdarg>
 #include <iostream>
@@ -7,34 +14,6 @@
 #include "manager.hpp"
 
 using namespace std;
-
-Manager::Manager(const char* name, const char* surname, const char* country){
-    unsigned int strlen_name = strlen(name);
-    unsigned int strlen_surname = strlen(surname);
-    unsigned int strlen_country = strlen(country);
-
-    this->name_ = new char[strlen_name+1];
-    this->surname_ = new char[strlen_surname+1];
-    this->country_ = new char[strlen_country+1];
-
-    assert(this->name_ != nullptr);
-    assert(this->surname_ != nullptr);
-    assert(this->country_ != nullptr);
-
-    char* n = (char *)this->name_;
-    char* s = (char *)this->surname_;
-    char* c = (char *)this->country_;
-
-    n[strlen_name] = 0;
-    s[strlen_surname] = 0;
-    c[strlen_name] = 0;
-
-    strcpy(n, name); //copy context
-    strcpy(s, surname);
-    strcpy(c, country);
-
-    this->team_ = nullptr;
-}
 
 Manager::Manager(const char* name, const char* surname, const char* country, Team* team){
     unsigned int strlen_name = strlen(name);

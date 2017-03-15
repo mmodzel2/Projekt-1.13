@@ -1,3 +1,10 @@
+/*
+* Name: trainer.cpp
+* Purpose: Football manager
+* @author mmodzel2
+* @version 1.0 15-03-2017
+*/
+
 #include <cstring>
 #include <iostream>
 #include <cassert>
@@ -6,34 +13,6 @@
 #include "trainer.hpp"
 
 using namespace std;
-
-Trainer::Trainer(const char* name, const char* surname, const char* country){
-    unsigned int strlen_name = strlen(name);
-    unsigned int strlen_surname = strlen(surname);
-    unsigned int strlen_country = strlen(country);
-
-    this->name_ = new char[strlen_name+1];
-    this->surname_ = new char[strlen_surname+1];
-    this->country_ = new char[strlen_country+1];
-
-    assert(this->name_ != nullptr);
-    assert(this->surname_ != nullptr);
-    assert(this->country_ != nullptr);
-
-    char* n = (char *)this->name_;
-    char* s = (char *)this->surname_;
-    char* c = (char *)this->country_;
-
-    n[strlen_name] = 0;
-    s[strlen_surname] = 0;
-    c[strlen_name] = 0;
-
-    strcpy(n, name); //copy context
-    strcpy(s, surname);
-    strcpy(c, country);
-
-    this->date_of_birth_ = new Date("0000-00-00");
-}
 
 Trainer::Trainer(const char* name, const char* surname, const char* country, const char* date_of_birth){
     unsigned int strlen_name = strlen(name);
@@ -108,6 +87,11 @@ Trainer::~Trainer(){
     unsigned int Trainer::Create_TrainerD(Console* console, void** args){
         /* Function for creating trainer - prepared to use with class console (args has pointers to arguments in the same order as in function
         Trainer(const char* name, const char* surname, const char* country, const char* date_of_birth);*/
+        if (strlen((const char *)args[4]) != 10){
+            (console->get_stream()) << "Bad date format." << endl;
+            return 4; //bad date format
+        }
+
         Trainer* tr = new Trainer((const char *)args[1],(const char *)args[2],(const char *)args[3],(const char *)args[4]);
         unsigned int ret = console->register_variable((const char *)args[0], tr);
         if (ret == 1 || tr == nullptr){

@@ -1,3 +1,10 @@
+/*
+* Name: date.hpp
+* Purpose: Football manager
+* @author mmodzel2
+* @version 1.0 15-03-2017
+*/
+
 #ifndef _DATE_HPP
 #define _DATE_HPP
 

@@ -1,3 +1,10 @@
+/*
+* Name: player.hpp
+* Purpose: Football manager
+* @author mmodzel2
+* @version 1.0 15-03-2017
+*/
+
 #ifndef _PLAYER_H
 #define _PLAYER_H
 

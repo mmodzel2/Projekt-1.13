@@ -1,3 +1,10 @@
+/*
+* Name: console.cpp
+* Purpose: Football manager
+* @author mmodzel2
+* @version 1.0 15-03-2017
+*/
+
 #include <cstdarg>
 #include <cstdlib>
 #include <cstring>

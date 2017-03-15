@@ -1,3 +1,10 @@
+/*
+* Name: manager.hpp
+* Purpose: Football manager
+* @author mmodzel2
+* @version 1.0 15-03-2017
+*/
+
 #ifndef _MANAGER_HPP
 #define _MANAGER_HPP
 
@@ -12,8 +19,7 @@ private:
     Team* team_;
 
 public:
-    Manager(const char* name, const char* surname, const char* country);
-    Manager(const char* name, const char* surname, const char* country, Team* team);
+    Manager(const char* name, const char* surname, const char* country, Team* team = nullptr);
     ~Manager();
 
     void delete_team();

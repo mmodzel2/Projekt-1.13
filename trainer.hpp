@@ -1,3 +1,10 @@
+/*
+* Name: trainer.hpp
+* Purpose: Football manager
+* @author mmodzel2
+* @version 1.0 15-03-2017
+*/
+
 #ifndef _TRAINER_HPP
 #define _TRAINER_HPP
 
@@ -17,8 +24,7 @@ private:
     float corner_multiplier_;
 
 public:
-    Trainer(const char* name, const char* surname, const char* country);
-    Trainer(const char* name, const char* surname, const char* country, const char* date_of_birth);
+    Trainer(const char* name, const char* surname, const char* country, const char* date_of_birth = "0000-00-00");
     ~Trainer();
 
     const char* get_name() const;

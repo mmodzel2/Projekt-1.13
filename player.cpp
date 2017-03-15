@@ -1,3 +1,10 @@
+/*
+* Name: player.cpp
+* Purpose: Football manager
+* @author mmodzel2
+* @version 1.0 15-03-2017
+*/
+
 #include <cstring>
 #include <iostream>
 #include <cassert>
@@ -249,6 +256,11 @@ Player::~Player(){
     unsigned int Player::Create_Player(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country);*/
+        if (strlen((const char *)args[3]) != 10){
+            (console->get_stream()) << "Bad date format." << endl;
+            return 4; //bad date format
+        }
+
         Player* p = new Player((const char *)args[1],(const char *)args[2],(const char *)args[3],(const char *)args[4]);
         unsigned int ret = console->register_variable((const char *)args[0], p);
         if (ret == 1 || p == nullptr){
@@ -268,6 +280,11 @@ Player::~Player(){
     unsigned int Player::Create_PlayerC(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country, unsigned long int cost);*/
+        if (strlen((const char *)args[3]) != 10){
+            (console->get_stream()) << "Bad date format." << endl;
+            return 4; //bad date format
+        }
+
         Player* p = new Player((const char *)args[1],(const char *)args[2],(const char *)args[3],(const char *)args[4],*(unsigned long int*)args[5]);
         unsigned int ret = console->register_variable((const char *)args[0], p);
         if (ret == 1 || p == nullptr){
@@ -287,6 +304,11 @@ Player::~Player(){
     unsigned int Player::Create_PlayerS(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country, float wage, unsigned char growth, float attack, float defense, float shoot, float corner);*/
+        if (strlen((const char *)args[3]) != 10){
+            (console->get_stream()) << "Bad date format." << endl;
+            return 4; //bad date format
+        }
+
         Player* p = new Player((const char *)args[1],(const char *)args[2],(const char *)args[3],(const char *)args[4],*(float*)args[5],*(unsigned char*)args[6],*(float*)args[7],*(float*)args[8],*(float*)args[9],*(float*)args[10]);
         unsigned int ret = console->register_variable((const char *)args[0], p);
         if (ret == 1 || p == nullptr){
@@ -306,6 +328,11 @@ Player::~Player(){
     unsigned int Player::Create_PlayerSC(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country, float wage, unsigned char growth, float attack, float defense, float shoot, float corner);*/
+        if (strlen((const char *)args[3]) != 10){
+            (console->get_stream()) << "Bad date format." << endl;
+            return 4; //bad date format
+        }
+
         Player* p = new Player((const char *)args[1],(const char *)args[2],(const char *)args[3],(const char *)args[4],*(float*)args[5],*(unsigned char*)args[6],*(float*)args[7],*(float*)args[8],*(float*)args[9],*(float*)args[10],*(unsigned long int*)args[11]);
         unsigned int ret = console->register_variable((const char *)args[0], p);
         if (ret == 1 || p == nullptr){
@@ -325,6 +352,11 @@ Player::~Player(){
     unsigned int Player::Create_PlayerSM(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country, float wage, unsigned char growth, float attack, float defense, float shoot, float corner, unsigned int matches, unsigned int goals, unsigned int assists);*/
+        if (strlen((const char *)args[3]) != 10){
+            (console->get_stream()) << "Bad date format." << endl;
+            return 4; //bad date format
+        }
+
         Player* p = new Player((const char *)args[1],(const char *)args[2],(const char *)args[3],(const char *)args[4],*(float*)args[5],*(unsigned char*)args[6],*(float*)args[7],*(float*)args[8],*(float*)args[9],*(float*)args[10],*(unsigned int*)args[11],*(unsigned int*)args[12],*(unsigned int*)args[13]);
         unsigned int ret = console->register_variable((const char *)args[0], p);
         if (ret == 1 || p == nullptr){
@@ -344,6 +376,11 @@ Player::~Player(){
     unsigned int Player::Create_PlayerSMC(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country, float wage, unsigned char growth, float attack, float defense, float shoot, float corner, unsigned int matches, unsigned int goals, unsigned int assists, unsigned long int cost);*/
+        if (strlen((const char *)args[3]) != 10){
+            (console->get_stream()) << "Bad date format." << endl;
+            return 4; //bad date format
+        }
+
         Player* p = new Player((const char *)args[1],(const char *)args[2],(const char *)args[3],(const char *)args[4],*(float*)args[5],*(unsigned char*)args[6],*(float*)args[7],*(float*)args[8],*(float*)args[9],*(float*)args[10],*(unsigned int*)args[11],*(unsigned int*)args[12],*(unsigned int*)args[13],*(unsigned long int*)args[14]);
         unsigned int ret = console->register_variable((const char *)args[0], p);
         if (ret == 1 || p == nullptr){
@@ -363,6 +400,11 @@ Player::~Player(){
     unsigned int Player::Create_PlayerSMCards(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country, float wage, unsigned char growth, float attack, float defense, float shoot, float corner, unsigned int matches, unsigned int goals, unsigned int assists, unsigned int red_cards, unsigned int yellow_cards);*/
+        if (strlen((const char *)args[3]) != 10){
+            (console->get_stream()) << "Bad date format." << endl;
+            return 4; //bad date format
+        }
+
         Player* p = new Player((const char *)args[1],(const char *)args[2],(const char *)args[3],(const char *)args[4],*(float*)args[5],*(unsigned char*)args[6],*(float*)args[7],*(float*)args[8],*(float*)args[9],*(float*)args[10],*(unsigned int*)args[11],*(unsigned int*)args[12],*(unsigned int*)args[13],*(unsigned int*)args[14],*(unsigned int*)args[15]);
         unsigned int ret = console->register_variable((const char *)args[0], &p);
         if (ret == 1 || p == nullptr){
@@ -381,6 +423,11 @@ Player::~Player(){
     unsigned int Player::Create_PlayerSMCCards(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country, float wage, unsigned char growth, float attack, float defense, float shoot, float corner, unsigned int matches, unsigned int goals, unsigned int assists, unsigned int red_cards, unsigned int yellow_cards,unsigned long int cost);*/
+        if (strlen((const char *)args[3]) != 10){
+            (console->get_stream()) << "Bad date format." << endl;
+            return 4; //bad date format
+        }
+
         Player* p = new Player((const char *)args[1],(const char *)args[2],(const char *)args[3],(const char *)args[4],*(float*)args[5],*(unsigned char*)args[6],*(float*)args[7],*(float*)args[8],*(float*)args[9],*(float*)args[10],*(unsigned int*)args[11],*(unsigned int*)args[12],*(unsigned int*)args[13],*(unsigned int*)args[14],*(unsigned int*)args[15],*(unsigned long int*)args[16]);
         unsigned int ret = console->register_variable((const char *)args[0], &p);
         if (ret == 1 || p == nullptr){

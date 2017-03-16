@@ -27,7 +27,8 @@ Trainer::Trainer(const char* name, const char* surname, const char* country, con
     assert(this->surname_ != nullptr);
     assert(this->country_ != nullptr);
 
-    assert(strlen(date_of_birth) != 10);
+    assert(strlen(date_of_birth) == 10);
+    assert(date_of_birth[4] == '-' && date_of_birth[7] == '-');
 
     char* n = (char *)this->name_;
     char* s = (char *)this->surname_;
@@ -87,7 +88,7 @@ Trainer::~Trainer(){
     unsigned int Trainer::Create_TrainerD(Console* console, void** args){
         /* Function for creating trainer - prepared to use with class console (args has pointers to arguments in the same order as in function
         Trainer(const char* name, const char* surname, const char* country, const char* date_of_birth);*/
-        if (strlen((const char *)args[4]) != 10){
+        if (strlen((const char *)args[4]) != 10 || ((const char *)args[4])[4] != '-' || ((const char *)args[4])[7] != '-'){
             (console->get_stream()) << "Bad date format." << endl;
             return 4; //bad date format
         }

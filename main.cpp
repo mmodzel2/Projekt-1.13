@@ -7,7 +7,9 @@
 
 #include <cstring>
 #include <cstdio>
+#include <cstdlib>
 #include <iostream>
+#include <ctime>
 
 #include "console.hpp"
 #include "test.hpp"
@@ -29,6 +31,8 @@ int main()
         cout << "Error. No free memory." << endl;
         return 1;
     }
+
+    srand(time(NULL));
 
     console->register_instruction(Player::Create_Player,"create_player",5,8,8,8,8,8);
     console->register_instruction(Player::Create_Player,"create_p",5,8,8,8,8,8);

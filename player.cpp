@@ -26,7 +26,8 @@ void Player::Player_create_(const char* name, const char* surname, const char* d
     assert(this->surname_ != nullptr);
     assert(this->country_ != nullptr);
 
-    assert(strlen(date_of_birth) >= 10);
+    assert(strlen(date_of_birth) == 10);
+    assert(date_of_birth[4] == '-' && date_of_birth[7] == '-');
 
     char* n = (char *)this->name_;
     char* s = (char *)this->surname_;
@@ -256,7 +257,7 @@ Player::~Player(){
     unsigned int Player::Create_Player(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country);*/
-        if (strlen((const char *)args[3]) != 10){
+        if (strlen((const char *)args[3]) != 10 || ((const char *)args[3])[4] != '-' || ((const char *)args[3])[7] != '-'){
             (console->get_stream()) << "Bad date format." << endl;
             return 4; //bad date format
         }
@@ -280,7 +281,7 @@ Player::~Player(){
     unsigned int Player::Create_PlayerC(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country, unsigned long int cost);*/
-        if (strlen((const char *)args[3]) != 10){
+        if (strlen((const char *)args[3]) != 10 || ((const char *)args[3])[4] != '-' || ((const char *)args[3])[7] != '-'){
             (console->get_stream()) << "Bad date format." << endl;
             return 4; //bad date format
         }
@@ -304,7 +305,7 @@ Player::~Player(){
     unsigned int Player::Create_PlayerS(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country, float wage, unsigned char growth, float attack, float defense, float shoot, float corner);*/
-        if (strlen((const char *)args[3]) != 10){
+        if (strlen((const char *)args[3]) != 10 || ((const char *)args[3])[4] != '-' || ((const char *)args[3])[7] != '-'){
             (console->get_stream()) << "Bad date format." << endl;
             return 4; //bad date format
         }
@@ -328,7 +329,7 @@ Player::~Player(){
     unsigned int Player::Create_PlayerSC(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country, float wage, unsigned char growth, float attack, float defense, float shoot, float corner);*/
-        if (strlen((const char *)args[3]) != 10){
+        if (strlen((const char *)args[3]) != 10 || ((const char *)args[3])[4] != '-' || ((const char *)args[3])[7] != '-'){
             (console->get_stream()) << "Bad date format." << endl;
             return 4; //bad date format
         }
@@ -352,7 +353,7 @@ Player::~Player(){
     unsigned int Player::Create_PlayerSM(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country, float wage, unsigned char growth, float attack, float defense, float shoot, float corner, unsigned int matches, unsigned int goals, unsigned int assists);*/
-        if (strlen((const char *)args[3]) != 10){
+        if (strlen((const char *)args[3]) != 10 || ((const char *)args[3])[4] != '-' || ((const char *)args[3])[7] != '-'){
             (console->get_stream()) << "Bad date format." << endl;
             return 4; //bad date format
         }
@@ -376,7 +377,7 @@ Player::~Player(){
     unsigned int Player::Create_PlayerSMC(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country, float wage, unsigned char growth, float attack, float defense, float shoot, float corner, unsigned int matches, unsigned int goals, unsigned int assists, unsigned long int cost);*/
-        if (strlen((const char *)args[3]) != 10){
+        if (strlen((const char *)args[3]) != 10 || ((const char *)args[3])[4] != '-' || ((const char *)args[3])[7] != '-'){
             (console->get_stream()) << "Bad date format." << endl;
             return 4; //bad date format
         }
@@ -400,7 +401,7 @@ Player::~Player(){
     unsigned int Player::Create_PlayerSMCards(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country, float wage, unsigned char growth, float attack, float defense, float shoot, float corner, unsigned int matches, unsigned int goals, unsigned int assists, unsigned int red_cards, unsigned int yellow_cards);*/
-        if (strlen((const char *)args[3]) != 10){
+        if (strlen((const char *)args[3]) != 10 || ((const char *)args[3])[4] != '-' || ((const char *)args[3])[7] != '-'){
             (console->get_stream()) << "Bad date format." << endl;
             return 4; //bad date format
         }
@@ -423,7 +424,7 @@ Player::~Player(){
     unsigned int Player::Create_PlayerSMCCards(Console* console, void** args){
         /* Function for creating player - prepared to use with class console (args has pointers to arguments in the same order as in function
         Player(const char* name, const char* surname, const char* date_of_birth, const char* country, float wage, unsigned char growth, float attack, float defense, float shoot, float corner, unsigned int matches, unsigned int goals, unsigned int assists, unsigned int red_cards, unsigned int yellow_cards,unsigned long int cost);*/
-        if (strlen((const char *)args[3]) != 10){
+        if (strlen((const char *)args[3]) != 10 || ((const char *)args[3])[4] != '-' || ((const char *)args[3])[7] != '-'){
             (console->get_stream()) << "Bad date format." << endl;
             return 4; //bad date format
         }

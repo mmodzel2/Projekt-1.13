@@ -21,8 +21,6 @@ void Team::Team_create_(const char* name, const char* country, const char* city,
     unsigned int strlen_city = strlen(city);
     unsigned int strlen_formation = strlen(formation);
 
-    srand(time(NULL));
-
     this->name_ = new char[strlen_name+1];
     this->country_ = new char[strlen_country+1];
     this->city_ = new char[strlen_city+1];
@@ -41,7 +39,7 @@ void Team::Team_create_(const char* name, const char* country, const char* city,
     n[strlen_name] = 0;
     co[strlen_country] = 0;
     ci[strlen_city] = 0;
-    f[strlen_name] = 0;
+    f[strlen_formation] = 0;
 
     strcpy(n, name); //copy context
     strcpy(co, country);
@@ -514,8 +512,7 @@ void Team::set_player_position(Player* p, unsigned char pos){
     }
 
     unsigned int Team::train(){
-        float stat;
-
+        float stat = 0.0;
         if (this->trainer_ == nullptr) return 1; //error
         if (this->players_count_ == 0) return 1; //error - no players
 
@@ -540,28 +537,28 @@ void Team::set_player_position(Player* p, unsigned char pos){
         }
 
         //additional training to pitch players
-        if ((rand()%2) == 0) return 0; //additional training with no success
+        if ((rand()%2) == 1){ //additional training with success
+            for (unsigned int i = 0; i < 11; i++){
+                if (pitch_players_[i] == nullptr) continue;
 
-        for (unsigned int i = 0; i < 11; i++){
-            if (pitch_players_[i] == nullptr) continue;
+                if (pitch_players_[i]->get_attack()+pitch_players_[i]->get_defense()+pitch_players_[i]->get_shoot()+pitch_players_[i]->get_corner() > (float)(rand()%400)) continue; //individual training with no success
 
-            if (pitch_players_[i]->get_attack()+pitch_players_[i]->get_defense()+pitch_players_[i]->get_shoot()+pitch_players_[i]->get_corner() > (float)(rand()%400)) continue; //individual training with no success
+                stat = this->pitch_players_[i]->get_attack();
+                stat = (((this->trainer_->get_attack_multiplier())*((float)(rand()%100)))- stat)/100.0;
+                if (stat > 0.0) this->pitch_players_[i]->add_attack(stat);
 
-            stat = this->pitch_players_[i]->get_attack();
-            stat = (((this->trainer_->get_attack_multiplier())*((float)(rand()%100)))- stat)/100.0;
-            if (stat > 0.0) this->pitch_players_[i]->add_attack(stat);
+                stat = this->pitch_players_[i]->get_defense();
+                stat = (((this->trainer_->get_defense_multiplier())*((float)(rand()%100)))- stat)/100.0;
+                if (stat > 0.0) this->pitch_players_[i]->add_defense(stat);
 
-            stat = this->pitch_players_[i]->get_defense();
-            stat = (((this->trainer_->get_defense_multiplier())*((float)(rand()%100)))- stat)/100.0;
-            if (stat > 0.0) this->pitch_players_[i]->add_defense(stat);
+                stat = this->pitch_players_[i]->get_shoot();
+                stat = (((this->trainer_->get_shoot_multiplier())*((float)(rand()%100)))- stat)/100.0;
+                if (stat > 0.0) this->pitch_players_[i]->add_shoot(stat);
 
-            stat = this->pitch_players_[i]->get_shoot();
-            stat = (((this->trainer_->get_shoot_multiplier())*((float)(rand()%100)))- stat)/100.0;
-            if (stat > 0.0) this->pitch_players_[i]->add_shoot(stat);
-
-            stat = this->pitch_players_[i]->get_corner();
-            stat = (((this->trainer_->get_corner_multiplier())*((float)(rand()%100)))- stat)/100.0;
-            if (stat > 0.0) this->pitch_players_[i]->add_corner(stat);
+                stat = this->pitch_players_[i]->get_corner();
+                stat = (((this->trainer_->get_corner_multiplier())*((float)(rand()%100)))- stat)/100.0;
+                if (stat > 0.0) this->pitch_players_[i]->add_corner(stat);
+            }
         }
 
         return 0; //success

@@ -145,6 +145,7 @@ void Console::parse(const char* instruction){
                     while(1){
                         while(*(char *)(instr+n) != 0 && (n < length)) n++;
 
+                        if (n >= length) break;
                         n++;
                         if (*(char *)(instr+n) == 0) n++;
                         if (n >= length) break;
@@ -197,6 +198,8 @@ void Console::parse(const char* instruction){
                     delete[] args_ushort;
                     delete[] args_uint;
                     delete[] args_ulong;
+                    delete[] args_float;
+                    delete[] args_double;
 
                     delete[] instr;
                     return;
@@ -205,6 +208,22 @@ void Console::parse(const char* instruction){
         }
     }
     (this->get_stream()) << "Wrong instruction." << endl;
+
+    if (arg_c != 0){
+        delete[] args;
+
+        delete[] args_char;
+        delete[] args_short;
+        delete[] args_int;
+        delete[] args_long;
+        delete[] args_uchar;
+        delete[] args_ushort;
+        delete[] args_uint;
+        delete[] args_ulong;
+        delete[] args_float;
+        delete[] args_double;
+    }
+
     delete[] instr;
 }
 unsigned int Console::register_instruction(unsigned int (*func)(Console*,void**), const char* instruction, unsigned int n, ...){ //n - count of arguments, after n id of type (unsigned int)

@@ -330,7 +330,7 @@ void Manager::delete_team_players(){ //delete team with players
         }
         name = console->get_variable((void*)((Manager *)args[0])->get_team());
         if (name == nullptr){
-            (console->get_stream()) << "Critical error - problem with finding variable" << endl;
+            (console->get_stream()) << "Critical error - problem with finding variable." << endl;
             return 3;
         }
         (console->get_stream()) << name << " " << ((Manager *)args[0])->get_team()->get_name() << endl;
